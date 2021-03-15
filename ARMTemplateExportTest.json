@@ -58,7 +58,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "False"
+            "defaultValue": "True"
           },
           "logsEnabled": {
             "type": "String",
