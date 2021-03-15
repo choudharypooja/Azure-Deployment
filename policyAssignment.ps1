@@ -36,9 +36,11 @@ $resource = Get-AzureRmResourceGroup -Name $resourceGroup
 
 $eachResource = $resource.ResourceId
 
-$assignment = New-AzureRmPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $eachResource  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity #$azureRegionParam,$eventHubAuthIdParam,$profileNameParam
+$eachAssignment = @{}
+$assignment = New-AzureRmPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $eachResource  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
+
+Start-Sleep -s 15
 New-AzRoleAssignment -Scope $eachResource -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor
-
-Write-Output $assignment
-return $assignment
+$eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
+return $eachAssignment
