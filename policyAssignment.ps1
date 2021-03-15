@@ -40,7 +40,7 @@ $eachAssignment = @{}
 $assignment = New-AzureRmPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $eachResource  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
 
-Start-Sleep -s 15
+Start-Sleep -s 30
 $Null = New-AzRoleAssignment -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor 
 $eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
 return $eachAssignment
