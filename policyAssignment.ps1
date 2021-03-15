@@ -41,6 +41,6 @@ $assignment = New-AzureRmPolicyAssignment -Name $resourceGroup -DisplayName $res
 
 
 Start-Sleep -s 15
-New-AzRoleAssignment -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor > $null
+$Null = New-AzRoleAssignment -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor 
 $eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
 return $eachAssignment
