@@ -45,7 +45,7 @@ foreach ($resourceGroup in $resourceGroups){
 wget https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/Trigger-PolicyInitiativeRemediation.ps1
 
 foreach($policyAssignment in $assignments.GetEnumerator()){
-	az policy state trigger-scan --resource-group $policyAssignment.Value
+	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignment.Value
 	
 	.\Trigger-PolicyInitiativeRemediation.ps1 -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
 
