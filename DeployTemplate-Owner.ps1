@@ -1,1 +1,0 @@
-New-AzureRmDeployment -Name BTJPSDeploy -TemplateFile .\helloworldParent.json -TemplateParameterFile .\helloworldParent.parameters.json -Location 'eastus'
