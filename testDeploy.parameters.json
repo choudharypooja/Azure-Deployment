@@ -1,0 +1,18 @@
+{
+ "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+ "contentVersion": "1.0.0.0",
+ "parameters": {
+  "azure_region": {
+   "value": "eastus"
+  },
+  "LM_Company_name": {
+   "value": "lmpoojachoudhary"
+  },
+  "LM_Access_Id": {
+   "value": "Et9vIH4IkI5L23vKr8Q2"
+  },
+  "LM_Access_Key": {
+   "value": "9h3(2]5477+^99fNgj6+_f4I)QS)23d=3djk[m3z"
+  }
+ }
+}
