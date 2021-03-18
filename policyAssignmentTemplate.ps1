@@ -12,7 +12,7 @@ $eventHubNamespaceId = Get-AzEventHubNamespace -ResourceGroupName $targetresourc
 # $eventHubParam = @{'eventHubName'=($eventHubId.Id);'eventHubRuleId'=($eventhubAuthorizationIdParam.Id);'azureRegions'=(-split $location);'profileName'=($resourceGroup);'metricsEnabled'=('True')}
 # $resource = Get-AzResourceGroup -Name $resourceGroup
 
-Write-Output $output
+Write-Output $eventHubNamespaceId
 $DeploymentScriptOutputs = @{}
 $DeploymentScriptOutputs['text'] = $eventHubNamespaceId
 
