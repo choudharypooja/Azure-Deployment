@@ -1,9 +1,9 @@
-$resourceGroup = "lm-pooja-we"
-$location="westeurope"
-$eventhubName = "log-hub"
-$eventhubNameSpace = "lm-logs-lmpoojachoudhary-westeurope"
-$eventhubAuthorizationId = "RootManageSharedAccessKey"
-$targetResourceGroup= "lm-pooja-we"
+# $resourceGroup = "lm-pooja-we"
+# $location="westeurope"
+# $eventhubName = "log-hub"
+# $eventhubNameSpace = "lm-logs-lmpoojachoudhary-westeurope"
+# $eventhubAuthorizationId = "RootManageSharedAccessKey"
+# $targetResourceGroup= "lm-pooja-we"
 
 $definition = Get-AzPolicySetDefinition | Where-Object { $_.Properties.DisplayName -eq 'Azure Diagnostics Policy Initiative to LM' }
 
