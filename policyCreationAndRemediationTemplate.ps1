@@ -31,7 +31,7 @@ New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githu
 $assignments = @{}
 
 foreach ($resourceGroup in $resourceGroups){
-	$policyAssignments = .\policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup
+	$policyAssignments = ./policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup
 
 	foreach($policyAssignment in $policyAssignments.GetEnumerator()){
 		$assignments.add($policyAssignment.Key,$policyAssignment.Value)
@@ -42,8 +42,8 @@ foreach ($resourceGroup in $resourceGroups){
 
 foreach($policyAssignment in $assignments.GetEnumerator()){
 	Write-Host "Runnning compliance result for $($policyAssignment.Value)" -ForegroundColor Cyan
-	az policy state trigger-scan --resource-group $policyAssignment.Value
+	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignment.Value
 	Start-Sleep -s 15
-	.\Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
+	./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
 }
 
