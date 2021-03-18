@@ -24,11 +24,11 @@ param
 
 )
   
-New-AzDeployment -Name "Initiative-LM" -TemplateUri "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/ARMTemplateExportTest.json" -Location $location -Verbose 
+New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/ARMTemplateExportTest.json" -Location $location -Verbose 
 
-mkdir lm-$location
+#mkdir lm-$location
 
-cd lm-$location
+#cd lm-$location
 
 wget https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyAssignment.ps1
 
@@ -37,17 +37,17 @@ $assignments = @{}
 foreach ($resourceGroup in $resourceGroups){
 	$policyAssignments = .\policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup
 
-	$assignments+=@{$policyAssignments}
-
+	foreach($policyAssignment in $policyAssignments.GetEnumerator()){
+		$assignments.add($policyAssignment.Key,$policyAssignment.Value)
+	}
 }
-# .\Trigger-PolicyEvaluation.ps1 -SubscriptionId "318382e3-a165-4f0d-8906-01fb4cd06b74" -ResourceGroup "lm-logs-qauat01-westindia-group" -interval 25
 
 wget https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/Trigger-PolicyInitiativeRemediation.ps1
 
 foreach($policyAssignment in $assignments.GetEnumerator()){
-	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignment.Value
-	
-	.\Trigger-PolicyInitiativeRemediation.ps1 -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
-
+	Write-Host "Runnning compliance result for $($policyAssignment.Value)" -ForegroundColor Cyan
+	az policy state trigger-scan --resource-group $policyAssignment.Value
+	Start-Sleep -s 15
+	.\Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
 }
 
