@@ -22,7 +22,7 @@ $resource = Get-AzResourceGroup -Name $resourceGroup
 $eachResource = $resource.ResourceId
 
 $eachAssignment = @{}
-$assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $eachResource  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
+$assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
 
 Start-Sleep -s 15
