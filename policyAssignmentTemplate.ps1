@@ -1,13 +1,6 @@
-# $resourceGroup = "lm-pooja-we"
-# $location="westeurope"
-# $eventhubName = "log-hub"
-# $eventhubNameSpace = "lm-logs-lmpoojachoudhary-westeurope"
-# $eventhubAuthorizationId = "RootManageSharedAccessKey"
-# $targetResourceGroup= "lm-pooja-we"
-
-$definition = Get-AzPolicySetDefinition | Where-Object { $_.Properties.DisplayName -eq 'Azure Diagnostics Policy Initiative to LM' }
-
-# $eventHubNamespaceId = Get-AzEventHubNamespace -ResourceGroupName $targetresourceGroup -NamespaceName $eventhubNameSpace
+$eventhubNameSpace = "lm-logs-lmpoojachoudhary-westeurope"
+$targetResourceGroup= "lm-pooja-we"
+$eventHubNamespaceId = Get-AzEventHubNamespace -ResourceGroupName $targetresourceGroup -NamespaceName $eventhubNameSpace
 
 # $eventHubId = Get-AzEventHub -ResourceGroupName $targetresourceGroup -NamespaceName $eventhubNameSpace -EventHubName $eventhubName
 
@@ -21,7 +14,7 @@ $definition = Get-AzPolicySetDefinition | Where-Object { $_.Properties.DisplayNa
 
 Write-Output $output
 $DeploymentScriptOutputs = @{}
-$DeploymentScriptOutputs['text'] = $definition
+$DeploymentScriptOutputs['text'] = $eventHubNamespaceId
 
 # $eachResource = $resource.ResourceId
 
