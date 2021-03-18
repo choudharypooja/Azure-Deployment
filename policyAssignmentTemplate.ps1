@@ -1,6 +1,5 @@
-$targetResourceGroup= 'lm-pooja-we'
-$resource = Get-AzResourceGroup -Name $targetResourceGroup
+$resource = Get-AzResourceGroup -Name 'lm-pooja-we'
 
-Write-Output $targetResourceGroup
-$DeploymentScriptOutputs = @{}
-$DeploymentScriptOutputs['resourceId'] = $targetResourceGroup
+Write-Host $resource
+# $DeploymentScriptOutputs = @{}
+# $DeploymentScriptOutputs['resourceId'] = $targetResourceGroup
