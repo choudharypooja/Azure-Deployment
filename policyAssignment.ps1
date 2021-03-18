@@ -39,11 +39,11 @@ $eachResource = $resource.ResourceId
 $eachAssignment = @{}
 $assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $eachResource  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
-Write-Output $assignment
-$DeploymentScriptOutputs = @{}
-$DeploymentScriptOutputs['principalId'] = $assignment
+# Write-Output $assignment
+# $DeploymentScriptOutputs = @{}
+# $DeploymentScriptOutputs['principalId'] = $assignment
 
-# Start-Sleep -s 15
-# New-AzRoleAssignment -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor
-# $eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
-# return $eachAssignment
+# # Start-Sleep -s 15
+# # New-AzRoleAssignment -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor
+# # $eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
+# # return $eachAssignment
