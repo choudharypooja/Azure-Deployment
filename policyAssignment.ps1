@@ -20,27 +20,27 @@ param
 	[string]$targetResourceGroup
 )
 
-$definition = Get-AzureRmPolicySetDefinition | Where-Object { $_.Properties.DisplayName -eq 'Azure Diagnostics Policy Initiative to LM' }
+$definition = Get-AzPolicySetDefinition | Where-Object { $_.Properties.DisplayName -eq 'Azure Diagnostics Policy Initiative to LM' }
 
 $eventHubNamespaceId = Get-AzEventHubNamespace -ResourceGroupName $targetresourceGroup -NamespaceName $eventhubNameSpace
 
-$eventHubId = Get-AzureRmEventHub -ResourceGroupName $targetresourceGroup -NamespaceName $eventhubNameSpace -EventHubName $eventhubName
+$eventHubId = Get-AzEventHub -ResourceGroupName $targetresourceGroup -NamespaceName $eventhubNameSpace -EventHubName $eventhubName
 
-$eventHubAuthorizationIdParam = Get-AzureRmEventHubAuthorizationRule -ResourceGroupName $targetresourceGroup -NamespaceName $eventhubNameSpace -Name $eventhubAuthorizationId
+$eventHubAuthorizationIdParam = Get-AzEventHubAuthorizationRule -ResourceGroupName $targetresourceGroup -NamespaceName $eventhubNameSpace -Name $eventhubAuthorizationId
 
 $azureRegionParam= @{'azureRegions'=($location)}
 
 
 $eventHubParam = @{'eventHubName'=($eventHubId.Id);'eventHubRuleId'=($eventhubAuthorizationIdParam.Id);'azureRegions'=(-split $location);'profileName'=($resourceGroup);'metricsEnabled'=('True')}
-$resource = Get-AzureRmResourceGroup -Name $resourceGroup
+$resource = Get-AzResourceGroup -Name $resourceGroup
 
 $eachResource = $resource.ResourceId
 
 $eachAssignment = @{}
-$assignment = New-AzureRmPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $eachResource  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
+$assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $eachResource  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
 
-Start-Sleep -s 30
-$Null = New-AzRoleAssignment -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor 
+Start-Sleep -s 15
+New-AzRoleAssignment -Scope $eachResource -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor
 $eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
 return $eachAssignment
