@@ -41,7 +41,7 @@ $assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resource
 
 Write-Output $assignment.Identity.PrincipalId
 $DeploymentScriptOutputs = @{}
-$DeploymentScriptOutputs['principalId'] = $assignment.Identity.PrincipalId
+$DeploymentScriptOutputs['principalId'] = $assignment
 
 # Start-Sleep -s 15
 # New-AzRoleAssignment -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor
