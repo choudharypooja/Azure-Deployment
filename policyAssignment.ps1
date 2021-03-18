@@ -39,7 +39,7 @@ $eachResource = $resource.ResourceId
 $eachAssignment = @{}
 $assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $eachResource  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
-Write-Output $assignment.Identity.PrincipalId
+Write-Output $assignment
 $DeploymentScriptOutputs = @{}
 $DeploymentScriptOutputs['principalId'] = $assignment
 
