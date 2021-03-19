@@ -2,7 +2,7 @@ param
 (
 	# An interval in seconds to check that trigger was successful
     [Parameter(Mandatory = $True)]
-    [string[]]$resourceGroups,
+    [string[]]$resourceGroups
 )
 
 $assignments = @()
