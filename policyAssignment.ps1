@@ -24,7 +24,7 @@ function NewAzureRmRoleAssignment($resource, $assignment, $retryCount) {
     $totalRetries = $retryCount
     While ($True) {
         Try {
-            $Null = New-AzRoleAssignment -Scope $resource.ResourceId -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor
+            $Null = New-AzRoleAssignment -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor
             Return
         }
         Catch {
@@ -35,7 +35,7 @@ function NewAzureRmRoleAssignment($resource, $assignment, $retryCount) {
             }
             $retryCount--
             Write-Warning "  The principal '$assignment.Identity.PrincipalId' cannot be granted 'Contributor' role on the resource group '$resource.ResourceId'. Trying again (attempt $($totalRetries - $retryCount)/$totalRetries)"
-            Start-Sleep 20
+            Start-Sleep 40
         }
     }
 }
@@ -57,6 +57,6 @@ $eachAssignment = @{}
 $assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $resource.ResourceId  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
 #Start-Sleep -s 15
-NewAzureRmRoleAssignment $resource $assignment 3
+NewAzureRmRoleAssignment $resource $assignment 5
 $eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
 return $eachAssignment 
