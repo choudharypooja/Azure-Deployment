@@ -38,17 +38,10 @@ foreach ($resourceGroup in $resourceGroups){
 	}
 }
 
-Write-Output $assignments
-$DeploymentScriptOutputs = @{}
-$DeploymentScriptOutputs['assignments'] = $assignments
-
-
-#wget https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/Trigger-PolicyInitiativeRemediation.ps1
-
-# foreach($policyAssignment in $assignments.GetEnumerator()){
-# 	Write-Host "Runnning compliance result for $($policyAssignment.Value)" -ForegroundColor Cyan
-# 	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignment.Value
-# 	Start-Sleep -s 15
-# 	./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
-# }
+foreach($policyAssignment in $assignments.GetEnumerator()){
+	Write-Host "Runnning compliance result for $($policyAssignment.Value)" -ForegroundColor Cyan
+	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignment.Value
+	Start-Sleep -s 15
+	./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
+}
 
