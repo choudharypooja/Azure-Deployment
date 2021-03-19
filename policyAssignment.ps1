@@ -30,20 +30,15 @@ $eventHubAuthorizationIdParam = Get-AzEventHubAuthorizationRule -ResourceGroupNa
 
 $azureRegionParam= @{'azureRegions'=($location)}
 
-
 $eventHubParam = @{'eventHubName'=($eventHubId.Id);'eventHubRuleId'=($eventhubAuthorizationIdParam.Id);'azureRegions'=(-split $location);'profileName'=($resourceGroup);'metricsEnabled'=('True')}
 $resource = Get-AzResourceGroup -Name $resourceGroup
 
-$eachResource = $resource.ResourceId
-
 $eachAssignment = @{}
-$assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
+$assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $resource.ResourceId  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
-# Write-Output $assignment
-# $DeploymentScriptOutputs = @{}
-# $DeploymentScriptOutputs['principalId'] = $assignment
-
-# # Start-Sleep -s 15
-# # New-AzRoleAssignment -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor
-# # $eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
-# # return $eachAssignment
+Start-Sleep -s 15
+New-AzRoleAssignment -Scope $resource.ResourceId -ObjectId $assignment.Identity.PrincipalId  -RoleDefinitionName Contributor
+$eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
+Write-Output $eachAssignment
+$DeploymentScriptOutputs = @{}
+$DeploymentScriptOutputs['assignment'] = $eachAssignment
