@@ -32,16 +32,11 @@ $assignments = @{}
 
 foreach ($resourceGroup in $resourceGroups){
 	$policyAssignments = ./policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup
-
-	foreach($policyAssignment in $policyAssignments.GetEnumerator()){
-		$assignments.add($policyAssignment.Key,$policyAssignment.Value)
-	}
-}
-
-foreach($policyAssignment in $assignments.GetEnumerator()){
-	Write-Host "Runnning compliance result for $($policyAssignment.Value)" -ForegroundColor Cyan
-	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignment.Value
-	Start-Sleep -s 15
-	./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
+	Write-Host "Runnning compliance result for $($policyAssignments.PolicyAssignmentId)" -ForegroundColor Cyan
+	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignments.ResourceGroupName
+	Start-Sleep -s 30
+	$Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor
+#	
+	#./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
 }
 
