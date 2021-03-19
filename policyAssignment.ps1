@@ -33,9 +33,9 @@ $azureRegionParam= @{'azureRegions'=($location)}
 $eventHubParam = @{'eventHubName'=($eventHubId.Id);'eventHubRuleId'=($eventhubAuthorizationIdParam.Id);'azureRegions'=(-split $location);'profileName'=($resourceGroup);'metricsEnabled'=('True')}
 $resource = Get-AzResourceGroup -Name $resourceGroup
 
-$eachAssignment = @{}
+#$eachAssignment = @{}
 $assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $resource.ResourceId  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
 #Start-Sleep -s 15
-$eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
-return $eachAssignment 
+#$eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
+return $assignment 
