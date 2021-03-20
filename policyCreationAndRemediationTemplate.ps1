@@ -35,8 +35,7 @@ foreach ($resourceGroup in $resourceGroups){
 	Write-Host "Runnning compliance result for $($policyAssignments.PolicyAssignmentId)" -ForegroundColor Cyan
 	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignments.ResourceGroupName
 	Start-Sleep -s 30
-	$Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor
-#	
-	#./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignment.Key -ResourceGroupName $policyAssignment.Value
+	$Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor -Scope $policyAssignments.ResourceId
+	./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignments.PolicyAssignmentId -ResourceGroupName $policyAssignments.ResourceGroupName
 }
 
