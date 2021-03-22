@@ -1,0 +1,99 @@
+{
+"$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "locationToDeployScript":{
+      "type":"String"
+    },
+    "locationOfResourceGroupsToSendLogs": {
+      "type": "string",
+      "defaultValue":"westindia"
+          },
+    "resourceGroups": {
+      "type": "String",
+    "defaultValue":
+      "lm-logs-qauat01-westindia-group,lm-logs-lmpoojachoudhary-westindia-group"
+    },
+    "eventhubName": {
+ "type": "String",
+ "defaultValue":"log-hub"
+ },
+ "eventhubNameSpace": {
+ "type": "String",
+ "defaultValue":"lm-logs-lmpoojachoudhary-westindia"
+ },
+ "eventhubAuthorizationId": {
+ "type": "String",
+ "defaultValue":"RootManageSharedAccessKey"
+ },
+ "targetResourceGroup":{
+  "type":"String",
+  "defaultValue":"lm-logs-lmpoojachoudhary-westindia-group"
+ },
+ "utcValue": {
+      "type": "string",
+      "defaultValue": "[utcNow()]"
+    },
+    "subscriptionId":{
+      "type":"string",
+      "defaultValue":"318382e3-a165-4f0d-8906-01fb4cd06b74"
+    }
+  },
+  "variables": {
+    "templateBaseUri" : "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
+    "deploymentResourceGroupName":"[concat('lm-deployment-for-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2018-05-01",
+      "location": "[parameters('locationToDeployScript')]",
+      "name": "[variables('deploymentResourceGroupName')]",
+      "properties": {}
+    },
+    {
+      "apiVersion": "2017-05-10",
+      "name": "linkedTemplatedeployment",
+      "type": "Microsoft.Resources/deployments",
+      "resourceGroup": "[variables('deploymentResourceGroupName')]",
+      "comments": "Deploy policies within the group",
+         "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(variables('templateBaseUri'), 'policyCreation.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+    "location": {
+     "value":"[parameters('locationOfResourceGroupsToSendLogs')]"
+          },
+    "resourceGroups": {
+     "value":"[parameters('resourceGroups')]"
+    },
+    "eventhubName": {
+"value":"[parameters('eventhubName')]"
+ },
+ "eventhubNameSpace": {
+ "value":"[parameters('eventhubNameSpace')]"
+ },
+ "eventhubAuthorizationId": {
+ "value":"[parameters('eventhubAuthorizationId')]"
+ },
+ "targetResourceGroup":{
+ "value":"[parameters('targetResourceGroup')]"
+ },
+ "utcValue": {
+   "value":"[parameters('utcValue')]"
+    },
+    "subscriptionId":{
+   "value":"[parameters('subscriptionId')]"
+    }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]"
+      ]
+       }
+
+  ]
+}
