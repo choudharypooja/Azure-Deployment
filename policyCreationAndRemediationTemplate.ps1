@@ -1,6 +1,5 @@
 param
 (
-	# An interval in seconds to check that trigger was successful
     [Parameter(Mandatory = $True)]
     [string[]]$resourceGroups,
 
@@ -8,7 +7,7 @@ param
     [string]$location,
 
     [Parameter(Mandatory =$True)]
-    [string]$targetResourceGroup,
+    [string]$lmCompanyName,
 
     [Parameter(Mandatory =$True)]
     [string]$subscriptionId
@@ -17,6 +16,7 @@ param
   
 New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/ARMTemplateExportTest.json" -Location $location -Verbose 
 
+$targetResourceGroup = 'lm-logs-' + $lmCompanyName + '-' + $location + '-group'
 $eventhubNameSpace = $targetResourceGroup.replace('-group','')
 $eventhubName = 'log-hub'
 $eventhubAuthorizationId = 'RootManageSharedAccessKey'
@@ -31,4 +31,3 @@ foreach ($resourceGroup in $resourceGroups){
 	./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignments.PolicyAssignmentId -ResourceGroupName $policyAssignments.ResourceGroupName
 	
 }
-
