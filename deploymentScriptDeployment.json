@@ -2,35 +2,25 @@
 "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "locationToDeployScript":{
-      "type":"String"
+    "subscriptionId":{
+      "type":"string"
     },
     "locationOfResourceGroupsToSendLogs": {
       "type": "string"
     },
     "resourceGroups": {
       "type": "String"
-    },
- "targetResourceGroup":{
-  "type":"String"
- },
- "utcValue": {
-      "type": "string",
-      "defaultValue": "[utcNow()]"
-    },
-    "subscriptionId":{
-      "type":"string"
     }
   },
   "variables": {
     "templateBaseUri" : "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
-    "deploymentResourceGroupName":"[concat('lm-deployment-for-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
+    "deploymentResourceGroupName":"[concat('lm-for-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
   },
   "resources": [
     {
       "type": "Microsoft.Resources/resourceGroups",
       "apiVersion": "2018-05-01",
-      "location": "[parameters('locationToDeployScript')]",
+      "location": "East US",
       "name": "[variables('deploymentResourceGroupName')]",
       "properties": {}
     },
@@ -40,7 +30,7 @@
       "type": "Microsoft.Resources/deployments",
       "resourceGroup": "[variables('deploymentResourceGroupName')]",
       "comments": "Deploy policies within the group",
-         "properties": {
+        "properties": {
         "mode": "Incremental",
         "templateLink": {
           "uri": "[concat(variables('templateBaseUri'), 'policyCreation.json')]",
@@ -53,21 +43,15 @@
     "resourceGroups": {
      "value":"[parameters('resourceGroups')]"
     },
- "targetResourceGroup":{
- "value":"[parameters('targetResourceGroup')]"
- },
- "utcValue": {
-   "value":"[parameters('utcValue')]"
-    },
     "subscriptionId":{
    "value":"[parameters('subscriptionId')]"
     }
-        }
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]"
-      ]
-       }
-
+  }
+  },
+    "dependsOn": [
+      "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]"
+    ]
+  }
   ]
 }
+
