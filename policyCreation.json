@@ -17,6 +17,10 @@
     "managedIdentity":{
       "type":"string",
       "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
+    },
+    "utcNow":{
+      "type":"string",
+      "defaultValue": "[utcNow()]"
     }
   },
   "resources": [
@@ -34,7 +38,7 @@
         }
       },
       "properties": {
-        "forceUpdateTag": "[utcNow()]",
+        "forceUpdateTag": "[parameters('utcValue')]",
         "azPowerShellVersion": "5.0",
         "timeout": "PT1H",
        "arguments": "[format(' -resourceGroups {0} -location {1} -lmCompanyName {2} -subscriptionId {3}', parameters('resourceGroups'), parameters('location'),parameters('LM_Company_name'), parameters('subscriptionId'))]",
