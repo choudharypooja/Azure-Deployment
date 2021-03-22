@@ -23,7 +23,7 @@ param
 	
 	[Parameter(Mandatory=$false)]
     	[ValidateSet("AzureChinaCloud","AzureCloud","AzureGermanCloud","AzureUSGovernment")]
-    	[string]$Environment = "AzureCloud
+    	[string]$Environment = "AzureCloud"
 )
 
 try
