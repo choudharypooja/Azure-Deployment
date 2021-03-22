@@ -20,7 +20,7 @@ param
 	[string]$targetResourceGroup,
 	
 	[Parameter(Mandatory =$True)]
-	[string]$targetResourceGroup,
+	[string]$subscriptionId,
 	
 	[Parameter(Mandatory=$false)]
     	[ValidateSet("AzureChinaCloud","AzureCloud","AzureGermanCloud","AzureUSGovernment")]
