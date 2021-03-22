@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue":"westindia"
+          },
+    "resourceGroups": {
+      "type": "String",
+    "defaultValue":
+      "lm-logs-qauat01-westindia-group,lm-logs-lmpoojachoudhary-westindia-group"
+    },
+    "eventhubName": {
+ "type": "String",
+ "defaultValue":"log-hub"
+ },
+ "eventhubNameSpace": {
+ "type": "String",
+ "defaultValue":"lm-logs-lmpoojachoudhary-westindia"
+ },
+ "eventhubAuthorizationId": {
+ "type": "String",
+ "defaultValue":"RootManageSharedAccessKey"
+ },
+ "targetResourceGroup":{
+  "type":"String",
+  "defaultValue":"lm-logs-lmpoojachoudhary-westindia-group"
+ },
+ "utcValue": {
+      "type": "string",
+      "defaultValue": "[utcNow()]"
+    },
+    "subscriptionId":{
+      "type":"string",
+      "defaultValue":"318382e3-a165-4f0d-8906-01fb4cd06b74"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2020-10-01",
+      "name": "scriptInTemplate",
+      "location": "[resourceGroup().location]",
+      "kind": "AzurePowerShell",
+      "identity": {
+    "type": "userAssigned",
+    "userAssignedIdentities": {
+     "/subscriptions/318382e3-a165-4f0d-8906-01fb4cd06b74/resourceGroups/lm-pooja-we/providers/Microsoft.ManagedIdentity/userAssignedIdentities/msi-lm-pooja-we-deploy": {
+      }
+  }},
+      "properties": {
+        "forceUpdateTag": "[parameters('utcValue')]",
+        "azPowerShellVersion": "5.0",
+        "timeout": "PT1H",
+       "arguments": "[format(' -resourceGroups {0} -location {1} -eventhubName {2} -eventhubNameSpace {3} -eventhubAuthorizationId {4} -targetResourceGroup {5} -subscriptionId {6}', parameters('resourceGroups'), parameters('location'), parameters('eventhubName'),parameters('eventhubNameSpace'),parameters('eventhubAuthorizationId'),parameters('targetResourceGroup'), parameters('subscriptionId'))]",
+        "primaryScriptURI": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyCreationAndRemediationTemplate.ps1",
+         "supportingScriptUris":[
+               "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyAssignment.ps1",
+              "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/Trigger-PolicyInitiativeRemediation.ps1"
+              ],
+        "cleanupPreference": "OnSuccess",
+        "retentionInterval": "P1D"
+      }
+    }
+  ]
+}
