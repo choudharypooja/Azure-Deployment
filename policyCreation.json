@@ -36,7 +36,7 @@
         "forceUpdateTag": "[parameters('utcValue')]",
         "azPowerShellVersion": "5.0",
         "timeout": "PT1H",
-       "arguments": "[format(' -resourceGroups {0} -location {1} -targetResourceGroup {5} -subscriptionId {6}', parameters('resourceGroups'), parameters('location'),parameters('targetResourceGroup'), parameters('subscriptionId'))]",
+       "arguments": "[format(' -resourceGroups {0} -location {1} -targetResourceGroup {2} -subscriptionId {3}', parameters('resourceGroups'), parameters('location'),parameters('targetResourceGroup'), parameters('subscriptionId'))]",
         "primaryScriptURI": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyCreationAndRemediationTemplate.ps1",
          "supportingScriptUris":[
                "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyAssignment.ps1",
