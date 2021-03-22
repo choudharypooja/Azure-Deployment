@@ -21,7 +21,7 @@
   },
   "variables": {
     "templateBaseUri" : "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
-    "deploymentResourceGroupName":"[concat('lm-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
+    "deploymentResourceGroupName":"[concat('lm-for-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
   },
   "resources": [
     {
@@ -51,14 +51,13 @@
      "value":"[parameters('resourceGroups')]"
     },
     "LM_Company_name":{
-      "type":"String"
+      "value":"[parameters('LM_Company_name')]"
     },
     "subscriptionId":{
    "value":"[parameters('subscriptionId')]"
     },
     "managedIdentity":{
-      "type":"string",
-      "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
+      "value":"[parameters('managedIdentity')]"
     }
   }
   },
