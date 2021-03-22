@@ -41,11 +41,11 @@
         "azPowerShellVersion": "5.0",
         "timeout": "PT1H",
         "arguments": "[format(' -resourceGroups {0} -location {1} -lmCompanyName {2} -subscriptionId {3}', parameters('resourceGroups'), parameters('location'),parameters('LM_Company_name'), parameters('subscriptionId'))]",
-        "primaryScriptURI": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/policyEvaluationTest/main/policyCreationAndRemediationTemplate.ps1",
+        "primaryScriptURI": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyEvaluationTest/policyCreationAndRemediationTemplate.ps1",
         "supportingScriptUris":[
-          "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/policyEvaluationTest/main/policyAssignment.ps1",
-          "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/policyEvaluationTest/main/Trigger-PolicyInitiativeRemediation.ps1",
-          "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/policyEvaluationTest/main/Trigger-PolicyEvaluation.ps1"
+          "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyEvaluationTest/policyAssignment.ps1",
+          "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyEvaluationTest/Trigger-PolicyInitiativeRemediation.ps1",
+          "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyEvaluationTest/Trigger-PolicyEvaluation.ps1"
         ],
         "cleanupPreference": "OnSuccess",
         "retentionInterval": "P1D"
