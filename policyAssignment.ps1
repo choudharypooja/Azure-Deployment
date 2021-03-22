@@ -26,6 +26,7 @@ param
     	[ValidateSet("AzureChinaCloud","AzureCloud","AzureGermanCloud","AzureUSGovernment")]
     	[string]$Environment = "AzureCloud
 )
+
 try
 {
     $AzureLogin = Get-AzSubscription
@@ -48,15 +49,15 @@ catch
     $token = $profileClient.AcquireAccessToken($currentContext.Subscription.TenantId)
 }
 
-Try
-{
-    $Subscription = Get-AzSubscription -SubscriptionId $subscriptionId
-}
-catch
-{
-    Write-Host "Subscription not found"
-    break
-}
+# Try
+# {
+#     $Subscription = Get-AzSubscription -SubscriptionId $subscriptionId
+# }
+# catch
+# {
+#     Write-Host "Subscription not found"
+#     break
+# }
 
 $definition = Get-AzPolicySetDefinition | Where-Object { $_.Properties.DisplayName -eq 'Azure Diagnostics Policy Initiative to LM' }
 
