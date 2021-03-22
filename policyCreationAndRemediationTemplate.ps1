@@ -7,28 +7,19 @@ param
     [Parameter(Mandatory = $True)]
     [string]$location,
 
-	[Parameter(Mandatory = $True)] 
-	[string]$eventhubName,
+    [Parameter(Mandatory =$True)]
+    [string]$targetResourceGroup,
 
-	[Parameter(Mandatory = $True)]
-	[string]$eventhubNameSpace,
-
-	[Parameter(Mandatory = $True)] 
-	[string]$eventhubAuthorizationId,
-
-	[Parameter(Mandatory =$True)]
-	[string]$targetResourceGroup,
-
-	[Parameter(Mandatory =$True)]
-	[string]$subscriptionId
+    [Parameter(Mandatory =$True)]
+    [string]$subscriptionId
 
 )
   
 New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/ARMTemplateExportTest.json" -Location $location -Verbose 
 
-#wget https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyAssignment.ps1
-
-$assignments = @{}
+$eventhubNameSpace = $targetResourceGroup.replace('-group','')
+$eventhubName = 'log-hub'
+$eventhubAuthorizationId = 'RootManageSharedAccessKey'
 
 foreach ($resourceGroup in $resourceGroups){
 	$policyAssignments = ./policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup
