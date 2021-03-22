@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string"
+    },
+    "resourceGroups": {
+      "type": "String"
+    },
+    "LM_Company_name":{
+      "type":"String"
+    },
+    "subscriptionId":{
+      "type":"string"
+    },
+    "managedIdentity":{
+      "type":"string",
+      "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
+    },
+    "utcNow":{
+      "type":"string",
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2020-10-01",
+      "name": "scriptInTemplate",
+      "location": "[resourceGroup().location]",
+      "kind": "AzurePowerShell",
+      "identity": {
+        "type": "userAssigned",
+        "userAssignedIdentities": {
+          "[parameters('managedIdentity')]": {
+          }
+        }
+      },
+      "properties": {
+        "forceUpdateTag": "[parameters('utcNow')]",
+        "azPowerShellVersion": "5.0",
+        "timeout": "PT1H",
+        "arguments": "[format(' -resourceGroups {0} -location {1} -lmCompanyName {2} -subscriptionId {3}', parameters('resourceGroups'), parameters('location'),parameters('LM_Company_name'), parameters('subscriptionId'))]",
+        "primaryScriptURI": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/policyEvaluationTest/main/policyCreationAndRemediationTemplate.ps1",
+        "supportingScriptUris":[
+          "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/policyEvaluationTest/main/policyAssignment.ps1",
+          "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/policyEvaluationTest/main/Trigger-PolicyInitiativeRemediation.ps1",
+          "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/policyEvaluationTest/main/Trigger-PolicyEvaluation.ps1"
+        ],
+        "cleanupPreference": "OnSuccess",
+        "retentionInterval": "P1D"
+      }
+    }
+  ]
+}
