@@ -3,37 +3,20 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
-      "type": "string",
-      "defaultValue":"westindia"
-          },
-    "resourceGroups": {
-      "type": "String",
-    "defaultValue":
-      "lm-logs-qauat01-westindia-group,lm-logs-lmpoojachoudhary-westindia-group"
+      "type": "string"
     },
-    "eventhubName": {
- "type": "String",
- "defaultValue":"log-hub"
- },
- "eventhubNameSpace": {
- "type": "String",
- "defaultValue":"lm-logs-lmpoojachoudhary-westindia"
- },
- "eventhubAuthorizationId": {
- "type": "String",
- "defaultValue":"RootManageSharedAccessKey"
- },
+    "resourceGroups": {
+      "type": "String"
+    },
  "targetResourceGroup":{
-  "type":"String",
-  "defaultValue":"lm-logs-lmpoojachoudhary-westindia-group"
+  "type":"String"
  },
  "utcValue": {
       "type": "string",
       "defaultValue": "[utcNow()]"
     },
     "subscriptionId":{
-      "type":"string",
-      "defaultValue":"318382e3-a165-4f0d-8906-01fb4cd06b74"
+      "type":"string"
     }
   },
   "resources": [
@@ -53,7 +36,7 @@
         "forceUpdateTag": "[parameters('utcValue')]",
         "azPowerShellVersion": "5.0",
         "timeout": "PT1H",
-       "arguments": "[format(' -resourceGroups {0} -location {1} -eventhubName {2} -eventhubNameSpace {3} -eventhubAuthorizationId {4} -targetResourceGroup {5} -subscriptionId {6}', parameters('resourceGroups'), parameters('location'), parameters('eventhubName'),parameters('eventhubNameSpace'),parameters('eventhubAuthorizationId'),parameters('targetResourceGroup'), parameters('subscriptionId'))]",
+       "arguments": "[format(' -resourceGroups {0} -location {1} -targetResourceGroup {5} -subscriptionId {6}', parameters('resourceGroups'), parameters('location'),parameters('targetResourceGroup'), parameters('subscriptionId'))]",
         "primaryScriptURI": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyCreationAndRemediationTemplate.ps1",
          "supportingScriptUris":[
                "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyAssignment.ps1",
