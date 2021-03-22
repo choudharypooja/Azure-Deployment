@@ -1,6 +1,5 @@
 param
 (
-    # An interval in seconds to check that trigger was successful
     [Parameter(Mandatory = $True)]
     [string]$resourceGroup,
 
@@ -49,16 +48,6 @@ catch
     $token = $profileClient.AcquireAccessToken($currentContext.Subscription.TenantId)
 }
 
-# Try
-# {
-#     $Subscription = Get-AzSubscription -SubscriptionId $subscriptionId
-# }
-# catch
-# {
-#     Write-Host "Subscription not found"
-#     break
-# }
-
 $definition = Get-AzPolicySetDefinition | Where-Object { $_.Properties.DisplayName -eq 'Azure Diagnostics Policy Initiative to LM' }
 
 $eventHubNamespaceId = Get-AzEventHubNamespace -ResourceGroupName $targetresourceGroup -NamespaceName $eventhubNameSpace
@@ -72,9 +61,6 @@ $azureRegionParam= @{'azureRegions'=($location)}
 $eventHubParam = @{'eventHubName'=($eventHubId.Id);'eventHubRuleId'=($eventhubAuthorizationIdParam.Id);'azureRegions'=(-split $location);'profileName'=($resourceGroup);'metricsEnabled'=('True')}
 $resource = Get-AzResourceGroup -Name $resourceGroup
 
-#$eachAssignment = @{}
 $assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $resource.ResourceId  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
-#Start-Sleep -s 15
-#$eachAssignment.add($assignment.PolicyAssignmentId,$assignment.ResourceGroupName)
 return $assignment 
