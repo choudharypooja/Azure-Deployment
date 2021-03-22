@@ -13,6 +13,10 @@
     },
     "subscriptionId":{
       "type":"string"
+    },
+    "managedIdentity":{
+      "type":"string",
+      "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
     }
   },
   "resources": [
@@ -25,7 +29,7 @@
       "identity": {
       "type": "userAssigned",
         "userAssignedIdentities": {
-          "/subscriptions/318382e3-a165-4f0d-8906-01fb4cd06b74/resourceGroups/lm-pooja-we/providers/Microsoft.ManagedIdentity/userAssignedIdentities/msi-lm-pooja-we-deploy": {
+          "[parameters('managedIdentity')]": {
           }
         }
       },
