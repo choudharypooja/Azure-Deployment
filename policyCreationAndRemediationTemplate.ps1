@@ -27,6 +27,7 @@ foreach ($resourceGroup in $resourceGroups){
 	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignments.ResourceGroupName
 	Start-Sleep -s 30
 	$Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor
+	Start-Sleep -s 20
 	./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignments.PolicyAssignmentId -ResourceGroupName $policyAssignments.ResourceGroupName
 	
 }
