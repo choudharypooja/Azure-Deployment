@@ -8,12 +8,8 @@
     "resourceGroups": {
       "type": "String"
     },
- "targetResourceGroup":{
-  "type":"String"
- },
- "utcValue": {
-      "type": "string",
-      "defaultValue": "[utcNow()]"
+    "LM_Company_name":{
+      "type":"String"
     },
     "subscriptionId":{
       "type":"string"
@@ -27,21 +23,22 @@
       "location": "[resourceGroup().location]",
       "kind": "AzurePowerShell",
       "identity": {
-    "type": "userAssigned",
-    "userAssignedIdentities": {
-     "/subscriptions/318382e3-a165-4f0d-8906-01fb4cd06b74/resourceGroups/lm-pooja-we/providers/Microsoft.ManagedIdentity/userAssignedIdentities/msi-lm-pooja-we-deploy": {
-      }
-  }},
+      "type": "userAssigned",
+        "userAssignedIdentities": {
+          "/subscriptions/318382e3-a165-4f0d-8906-01fb4cd06b74/resourceGroups/lm-pooja-we/providers/Microsoft.ManagedIdentity/userAssignedIdentities/msi-lm-pooja-we-deploy": {
+          }
+        }
+      },
       "properties": {
-        "forceUpdateTag": "[parameters('utcValue')]",
+        "forceUpdateTag": "[utcNow()]",
         "azPowerShellVersion": "5.0",
         "timeout": "PT1H",
-       "arguments": "[format(' -resourceGroups {0} -location {1} -targetResourceGroup {2} -subscriptionId {3}', parameters('resourceGroups'), parameters('location'),parameters('targetResourceGroup'), parameters('subscriptionId'))]",
+       "arguments": "[format(' -resourceGroups {0} -location {1} -lmCompanyName {2} -subscriptionId {3}', parameters('resourceGroups'), parameters('location'),parameters('LM_Company_name'), parameters('subscriptionId'))]",
         "primaryScriptURI": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyCreationAndRemediationTemplate.ps1",
-         "supportingScriptUris":[
-               "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyAssignment.ps1",
+        "supportingScriptUris":[
+              "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyAssignment.ps1",
               "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/Trigger-PolicyInitiativeRemediation.ps1"
-              ],
+            ],
         "cleanupPreference": "OnSuccess",
         "retentionInterval": "P1D"
       }
