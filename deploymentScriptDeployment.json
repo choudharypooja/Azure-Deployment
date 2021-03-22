@@ -10,11 +10,18 @@
     },
     "resourceGroups": {
       "type": "String"
+    },
+    "LM_Company_name":{
+      "type":"String"
+    },
+    "managedIdentity":{
+      "type":"string",
+      "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
     }
   },
   "variables": {
     "templateBaseUri" : "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
-    "deploymentResourceGroupName":"[concat('lm-for-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
+    "deploymentResourceGroupName":"[concat('lm-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
   },
   "resources": [
     {
@@ -43,8 +50,15 @@
     "resourceGroups": {
      "value":"[parameters('resourceGroups')]"
     },
+    "LM_Company_name":{
+      "type":"String"
+    },
     "subscriptionId":{
    "value":"[parameters('subscriptionId')]"
+    },
+    "managedIdentity":{
+      "type":"string",
+      "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
     }
   }
   },
@@ -54,4 +68,3 @@
   }
   ]
 }
-
