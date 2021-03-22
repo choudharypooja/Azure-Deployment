@@ -6,37 +6,20 @@
       "type":"String"
     },
     "locationOfResourceGroupsToSendLogs": {
-      "type": "string",
-      "defaultValue":"westindia"
-          },
-    "resourceGroups": {
-      "type": "String",
-    "defaultValue":
-      "lm-logs-qauat01-westindia-group,lm-logs-lmpoojachoudhary-westindia-group"
+      "type": "string"
     },
-    "eventhubName": {
- "type": "String",
- "defaultValue":"log-hub"
- },
- "eventhubNameSpace": {
- "type": "String",
- "defaultValue":"lm-logs-lmpoojachoudhary-westindia"
- },
- "eventhubAuthorizationId": {
- "type": "String",
- "defaultValue":"RootManageSharedAccessKey"
- },
+    "resourceGroups": {
+      "type": "String"
+    },
  "targetResourceGroup":{
-  "type":"String",
-  "defaultValue":"lm-logs-lmpoojachoudhary-westindia-group"
+  "type":"String"
  },
  "utcValue": {
       "type": "string",
       "defaultValue": "[utcNow()]"
     },
     "subscriptionId":{
-      "type":"string",
-      "defaultValue":"318382e3-a165-4f0d-8906-01fb4cd06b74"
+      "type":"string"
     }
   },
   "variables": {
@@ -70,15 +53,6 @@
     "resourceGroups": {
      "value":"[parameters('resourceGroups')]"
     },
-    "eventhubName": {
-"value":"[parameters('eventhubName')]"
- },
- "eventhubNameSpace": {
- "value":"[parameters('eventhubNameSpace')]"
- },
- "eventhubAuthorizationId": {
- "value":"[parameters('eventhubAuthorizationId')]"
- },
  "targetResourceGroup":{
  "value":"[parameters('targetResourceGroup')]"
  },
