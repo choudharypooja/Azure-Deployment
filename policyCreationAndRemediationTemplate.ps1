@@ -128,7 +128,8 @@ New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githu
 foreach ($resourceGroup in $resourceGroups){
 	$policyAssignments = ./policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup
 	Write-Host "Runnning compliance result for $($policyAssignments.PolicyAssignmentId)" -ForegroundColor Cyan
-    ./Trigger-PolicyEvaluation.ps1 -SubscriptionId $subsId -ResourceGroup $policyAssignments.ResourceGroupName
+	$job = Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignments.ResourceGroupName
+	$job | Wait-Job
 	Start-Sleep -s 30
 	$Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor
 	Start-Sleep -s 20
