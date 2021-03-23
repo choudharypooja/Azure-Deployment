@@ -27,7 +27,7 @@ $eventhubAuthorizationId = 'RootManageSharedAccessKey'
 foreach ($resourceGroup in $resourceGroups){
 	$resourceGroupDetails = Get-AzResourceGroup -Name $resourceGroup
 	if($location -ne $resourceGroupDetails.Location.replace(' ','').toLower()){
-		Write-Host "The ource resource groups are not in the same region...."
+		Write-Host "The source resource groups are not in the same region...."
 		$locationValidity=$False
 		break
 	}
@@ -127,7 +127,7 @@ New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githu
 foreach ($resourceGroup in $resourceGroups){
 	$policyAssignments = ./policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup -subscriptionId $subscriptionId
 	Write-Host "Runnning compliance result for $($policyAssignments.PolicyAssignmentId)" -ForegroundColor Cyan
-    ./Trigger-PolicyEvaluation.ps1 -SubscriptionId $subscriptionId -ResourceGroup $policyAssignments.ResourceGroupName interval 25
+    ./Trigger-PolicyEvaluation.ps1 -SubscriptionId $subscriptionId -ResourceGroup $policyAssignments.ResourceGroupName
 	Start-Sleep -s 30
 	$Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor
 	Start-Sleep -s 20
