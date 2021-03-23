@@ -34,85 +34,6 @@ foreach ($resourceGroup in $resourceGroups){
 	}
 }
 
-If($ADO){write-host "ADO switch deprecated and no longer necessary" -ForegroundColor Yellow}
-Write-Host "Authenticating to Azure..." -ForegroundColor Cyan
-try
-{
-    $AzureLogin = Get-AzSubscription
-    $currentContext = Get-AzContext
-
-    # Establish REST Token
-    $azProfile = [Microsoft.Azure.Commands.Common.Authentication.Abstractions.AzureRmProfileProvider]::Instance.Profile
-    $profileClient = New-Object -TypeName Microsoft.Azure.Commands.ResourceManager.Common.RMProfileClient -ArgumentList ($azProfile)
-    $token = $profileClient.AcquireAccessToken($currentContext.Subscription.TenantId)
-}
-catch
-{
-    $null = Login-AzAccount -Environment $Environment
-    $AzureLogin = Get-AzSubscription
-    $currentContext = Get-AzContext
-
-    # Establish REST Token
-    $azProfile = [Microsoft.Azure.Commands.Common.Authentication.Abstractions.AzureRmProfileProvider]::Instance.Profile
-    $profileClient = New-Object -TypeName Microsoft.Azure.Commands.ResourceManager.Common.RMProfileClient -ArgumentList ($azProfile)
-    $token = $profileClient.AcquireAccessToken($currentContext.Subscription.TenantId)
-}
-
-Try
-{
-    $Subscription = Get-AzSubscription -SubscriptionId $subscriptionId
-}
-catch
-{
-    Write-Host "Subscription not found"
-    break
-}
-
-If($AzureLogin -and !($SubscriptionID))
-{
-    [array]$SubscriptionArray = Add-IndexNumberToArray (Get-AzSubscription)
-    [int]$SelectedSub = 0
-
-    # use the current subscription if there is only one subscription available
-    if ($SubscriptionArray.Count -eq 1)
-    {
-        $SelectedSub = 1
-    }
-    # Get SubscriptionID if one isn't provided
-    while($SelectedSub -gt $SubscriptionArray.Count -or $SelectedSub -lt 1)
-    {
-        Write-host "Please select a subscription from the list below"
-        $SubscriptionArray | Select-Object "#", Id, Name | Format-Table
-        try
-        {
-            $SelectedSub = Read-Host "Please enter a selection from 1 to $($SubscriptionArray.count)"
-        }
-        catch
-        {
-            Write-Warning -Message 'Invalid option, please try again.'
-        }
-    }
-    if($($SubscriptionArray[$SelectedSub - 1].Name))
-    {
-        $SubscriptionName = $($SubscriptionArray[$SelectedSub - 1].Name)
-    }
-    elseif($($SubscriptionArray[$SelectedSub - 1].SubscriptionName))
-    {
-        $SubscriptionName = $($SubscriptionArray[$SelectedSub - 1].SubscriptionName)
-    }
-    write-verbose "You Selected Azure Subscription: $SubscriptionName"
-
-    if($($SubscriptionArray[$SelectedSub - 1].SubscriptionID))
-    {
-        [guid]$SubscriptionID = $($SubscriptionArray[$SelectedSub - 1].SubscriptionID)
-    }
-    if($($SubscriptionArray[$SelectedSub - 1].ID))
-    {
-        [guid]$SubscriptionID = $($SubscriptionArray[$SelectedSub - 1].ID)
-    }
-}
-Write-Host "Selecting Azure Subscription: $SubscriptionID ..." -ForegroundColor Cyan
-$Null = Select-AzSubscription -SubscriptionId $SubscriptionID
 
 Get-AzResourceGroup -Name $targetResourceGroup -ErrorVariable notPresent -ErrorAction SilentlyContinue
 
@@ -126,13 +47,14 @@ if($locationValidity){
 New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/ARMTemplateExportTest.json" -Location $location -Verbose
 
 foreach ($resourceGroup in $resourceGroups){
-	$policyAssignments = ./policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup
+	#$policyAssignments = ./policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup
 	Write-Host "Running compliance result for $($policyAssignments.PolicyAssignmentId)" -ForegroundColor Cyan
-	Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignments.ResourceGroupName
+	$job = Start-AzPolicyComplianceScan -ResourceGroupName lm-logs-lmpoojachoudhary-westindia-group
+	$job | Wait-Job
 	Start-Sleep -s 30
-	$Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor
+	#$Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor
 	Start-Sleep -s 30
-	./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subsId -PolicyAssignmentId $policyAssignments.PolicyAssignmentId -ResourceGroupName $policyAssignments.ResourceGroupName
+	#./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subsId -PolicyAssignmentId $policyAssignments.PolicyAssignmentId -ResourceGroupName $policyAssignments.ResourceGroupName
 
 }
 }else{

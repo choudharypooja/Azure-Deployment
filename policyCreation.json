@@ -38,7 +38,7 @@
       },
       "properties": {
         "forceUpdateTag": "[parameters('utcNow')]",
-        "azPowerShellVersion": "5.0",
+        "azPowerShellVersion": "5.6",
         "timeout": "PT1H",
        "arguments": "[format(' -resourceGroups {0} -location {1} -lmCompanyName {2} -subscriptionId {3}', parameters('resourceGroups'), parameters('location'),parameters('LM_Company_name'), parameters('subscriptionId'))]",
         "primaryScriptURI": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyCreationAndRemediationTemplate.ps1",
