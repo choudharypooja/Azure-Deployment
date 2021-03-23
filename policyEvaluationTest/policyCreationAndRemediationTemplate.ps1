@@ -10,7 +10,11 @@ param
     [string]$lmCompanyName,
 
     [Parameter(Mandatory =$True)]
-    [string]$subscriptionId
+    [string]$subscriptionId,
+
+    [Parameter(Mandatory=$false)]
+    [ValidateSet("AzureChinaCloud","AzureCloud","AzureGermanCloud","AzureUSGovernment")]
+    [string]$Environment = "AzureCloud"
 
 )
 
@@ -106,8 +110,8 @@ If($AzureLogin -and !($SubscriptionID))
         [guid]$SubscriptionID = $($SubscriptionArray[$SelectedSub - 1].ID)
     }
 }
-Write-Host "Selecting Azure Subscription: $($SubscriptionID.Guid) ..." -ForegroundColor Cyan
-$Null = Select-AzSubscription -SubscriptionId $SubscriptionID.Guid
+Write-Host "Selecting Azure Subscription: $SubscriptionID ..." -ForegroundColor Cyan
+$Null = Select-AzSubscription -SubscriptionId $SubscriptionID
 
 Get-AzResourceGroup -Name $targetResourceGroup -ErrorVariable notPresent -ErrorAction SilentlyContinue
 
