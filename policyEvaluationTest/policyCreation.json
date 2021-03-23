@@ -6,20 +6,20 @@
       "type": "string"
     },
     "resourceGroups": {
-      "type": "String"
+      "type": "string"
     },
-    "LM_Company_name":{
-      "type":"String"
+    "LM_Company_name": {
+      "type": "string"
     },
-    "subscriptionId":{
-      "type":"string"
+    "subscriptionId": {
+      "type": "string"
     },
-    "managedIdentity":{
-      "type":"string",
-      "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
+    "managedIdentity": {
+      "type": "string",
+      "metadata": "Please provide the id of a User Defined Managed Identity with User Access Administrator role"
     },
-    "utcNow":{
-      "type":"string",
+    "utcNow": {
+      "type": "string"
     }
   },
   "resources": [
@@ -42,7 +42,7 @@
         "timeout": "PT1H",
         "arguments": "[format(' -resourceGroups {0} -location {1} -lmCompanyName {2} -subscriptionId {3}', parameters('resourceGroups'), parameters('location'),parameters('LM_Company_name'), parameters('subscriptionId'))]",
         "primaryScriptURI": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyEvaluationTest/policyCreationAndRemediationTemplate.ps1",
-        "supportingScriptUris":[
+        "supportingScriptUris": [
           "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyEvaluationTest/policyAssignment.ps1",
           "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyEvaluationTest/Trigger-PolicyInitiativeRemediation.ps1",
           "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyEvaluationTest/Trigger-PolicyEvaluation.ps1"

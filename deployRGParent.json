@@ -6,16 +6,16 @@
       "type": "string"
     },
     "LM_Company_name": {
-      "type": "String"
+      "type": "string"
     },
     "LM_Access_Id": {
-      "type": "String"
+      "type": "string"
     },
     "LM_Access_Key": {
-      "type": "String"
+      "type": "string"
     },
     "enableActivityLogs": {
-      "type": "String",
+      "type": "string",
       "allowedValues": [
         "Yes",
         "No"

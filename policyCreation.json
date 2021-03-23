@@ -19,7 +19,7 @@
       "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
     },
     "utcNow":{
-      "type":"string",
+      "type":"string"
     }
   },
   "resources": [

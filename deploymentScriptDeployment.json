@@ -1,31 +1,31 @@
 {
-"$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "subscriptionId":{
-      "type":"string"
+    "subscriptionId": {
+      "type": "string"
     },
     "locationOfResourceGroupsToSendLogs": {
       "type": "string"
     },
     "resourceGroups": {
-      "type": "String"
+      "type": "string"
     },
-    "LM_Company_name":{
-      "type":"String"
+    "LM_Company_name": {
+      "type": "string"
     },
-    "managedIdentity":{
-      "type":"string",
-      "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
+    "managedIdentity": {
+      "type": "string",
+      "metadata": "Please provide the id of a User Defined Managed Identity with User Access Administrator role"
     },
     "utcNow": {
-            "defaultValue": "[utcNow()]",
-            "type": "String"
-        }
+      "defaultValue": "[utcNow()]",
+      "type": "string"
+    }
   },
   "variables": {
-    "templateBaseUri" : "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
-    "deploymentResourceGroupName":"[concat('lm-for-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
+    "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
+    "deploymentResourceGroupName": "[concat('lm-for-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
   },
   "resources": [
     {
@@ -41,36 +41,36 @@
       "type": "Microsoft.Resources/deployments",
       "resourceGroup": "[variables('deploymentResourceGroupName')]",
       "comments": "Deploy policies within the group",
-        "properties": {
+      "properties": {
         "mode": "Incremental",
         "templateLink": {
           "uri": "[concat(variables('templateBaseUri'), 'policyCreation.json')]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-    "location": {
-     "value":"[parameters('locationOfResourceGroupsToSendLogs')]"
+          "location": {
+            "value": "[parameters('locationOfResourceGroupsToSendLogs')]"
           },
-    "resourceGroups": {
-     "value":"[parameters('resourceGroups')]"
-    },
-    "LM_Company_name":{
-      "value":"[parameters('LM_Company_name')]"
-    },
-    "subscriptionId":{
-   "value":"[parameters('subscriptionId')]"
-    },
-    "managedIdentity":{
-      "value":"[parameters('managedIdentity')]"
-    },
-    "utcNow": {
-       "value": "[parameters('utcNow')]"
-      }
-  }
-  },
-    "dependsOn": [
-      "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]"
-    ]
-  }
+          "resourceGroups": {
+            "value": "[parameters('resourceGroups')]"
+          },
+          "LM_Company_name": {
+            "value": "[parameters('LM_Company_name')]"
+          },
+          "subscriptionId": {
+            "value": "[parameters('subscriptionId')]"
+          },
+          "managedIdentity": {
+            "value": "[parameters('managedIdentity')]"
+          },
+          "utcNow": {
+            "value": "[parameters('utcNow')]"
+          }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]"
+      ]
+    }
   ]
 }
