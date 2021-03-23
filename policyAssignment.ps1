@@ -6,47 +6,18 @@ param
     [Parameter(Mandatory = $True)]
     [string]$location,
 
-	[Parameter(Mandatory = $True)] 
+	[Parameter(Mandatory = $True)]
 	[string]$eventhubName,
 
 	[Parameter(Mandatory = $True)]
 	[string]$eventhubNameSpace,
 
-	[Parameter(Mandatory = $True)] 
+	[Parameter(Mandatory = $True)]
 	[string]$eventhubAuthorizationId,
 
 	[Parameter(Mandatory =$True)]
-	[string]$targetResourceGroup,
-	
-	[Parameter(Mandatory =$True)]
-	[string]$subscriptionId,
-	
-	[Parameter(Mandatory=$false)]
-    	[ValidateSet("AzureChinaCloud","AzureCloud","AzureGermanCloud","AzureUSGovernment")]
-    	[string]$Environment = "AzureCloud"
+	[string]$targetResourceGroup
 )
-
-try
-{
-    $AzureLogin = Get-AzSubscription
-    $currentContext = Get-AzContext
-
-    # Establish REST Token
-    $azProfile = [Microsoft.Azure.Commands.Common.Authentication.Abstractions.AzureRmProfileProvider]::Instance.Profile
-    $profileClient = New-Object -TypeName Microsoft.Azure.Commands.ResourceManager.Common.RMProfileClient -ArgumentList ($azProfile)
-    $token = $profileClient.AcquireAccessToken($currentContext.Subscription.TenantId)
-}
-catch
-{
-    $null = Login-AzAccount -Environment $Environment
-    $AzureLogin = Get-AzSubscription
-    $currentContext = Get-AzContext
-    
-    # Establish REST Token
-    $azProfile = [Microsoft.Azure.Commands.Common.Authentication.Abstractions.AzureRmProfileProvider]::Instance.Profile
-    $profileClient = New-Object -TypeName Microsoft.Azure.Commands.ResourceManager.Common.RMProfileClient -ArgumentList ($azProfile)
-    $token = $profileClient.AcquireAccessToken($currentContext.Subscription.TenantId)
-}
 
 $definition = Get-AzPolicySetDefinition | Where-Object { $_.Properties.DisplayName -eq 'Azure Diagnostics Policy Initiative to LM' }
 
@@ -63,4 +34,4 @@ $resource = Get-AzResourceGroup -Name $resourceGroup
 
 $assignment = New-AzPolicyAssignment -Name $resourceGroup -DisplayName $resourceGroup -Scope $resource.ResourceId  -PolicySetDefinition $definition -Location $location -PolicyParameterObject  $eventHubParam -AssignIdentity
 
-return $assignment 
+return $assignment
