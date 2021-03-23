@@ -20,7 +20,7 @@ $targetResourceGroup = 'lm-logs-' + $lmCompanyName + '-' + $location + '-group'
 $eventhubNameSpace = $targetResourceGroup.replace('-group','')
 $eventhubName = 'log-hub'
 $eventhubAuthorizationId = 'RootManageSharedAccessKey'
-for($resourceGroup in $resourceGroups){
+foreach ($resourceGroup in $resourceGroups){
 	$resourceGroupDetails = Get-AzResourceGroup -Name $resourceGroup
 	if($location -ne $resourceGroupDetails.Location.replace(' ','').toLower()){
 		Write-Host "The ource resource groups are not in the same region...."
@@ -28,15 +28,7 @@ for($resourceGroup in $resourceGroups){
 		break
 	}
 }
-Get-AzResourceGroup -Name $targetResourceGroup -ErrorVariable notPresent -ErrorAction SilentlyContinue
 
-if ($notPresent)
-{
-    Write-Host "The target resource group is not present in the specified location or the lm_company_name is incorrect"
-}
-else
-{
-if($locationValidity){
 If($ADO){write-host "ADO switch deprecated and no longer necessary" -ForegroundColor Yellow}
 Write-Host "Authenticating to Azure..." -ForegroundColor Cyan
 try
@@ -117,6 +109,15 @@ If($AzureLogin -and !($SubscriptionID))
 Write-Host "Selecting Azure Subscription: $($SubscriptionID.Guid) ..." -ForegroundColor Cyan
 $Null = Select-AzSubscription -SubscriptionId $SubscriptionID.Guid
 
+Get-AzResourceGroup -Name $targetResourceGroup -ErrorVariable notPresent -ErrorAction SilentlyContinue
+
+if ($notPresent)
+{
+    Write-Host "The target resource group is not present in the specified location or the lm_company_name is incorrect"
+}
+else
+{
+if($locationValidity){
 New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/ARMTemplateExportTest.json" -Location $location -Verbose
 
 foreach ($resourceGroup in $resourceGroups){
@@ -132,3 +133,4 @@ foreach ($resourceGroup in $resourceGroups){
 }else{
 		Write-Host "Exiting the script...."
 	}
+}

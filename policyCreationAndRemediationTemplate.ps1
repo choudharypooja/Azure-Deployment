@@ -21,7 +21,7 @@ $eventhubNameSpace = $targetResourceGroup.replace('-group','')
 $eventhubName = 'log-hub'
 $eventhubAuthorizationId = 'RootManageSharedAccessKey'
 
-for($resourceGroup in $resourceGroups){
+foreach($resourceGroup in $resourceGroups){
 	$resourceGroupDetails = Get-AzResourceGroup -Name $resourceGroup
 	if($location -ne $resourceGroupDetails.Location.replace(' ','').toLower()){
 		Write-Host "The ource resource groups are not in the same region...."
