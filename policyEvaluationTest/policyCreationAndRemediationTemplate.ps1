@@ -20,7 +20,23 @@ $targetResourceGroup = 'lm-logs-' + $lmCompanyName + '-' + $location + '-group'
 $eventhubNameSpace = $targetResourceGroup.replace('-group','')
 $eventhubName = 'log-hub'
 $eventhubAuthorizationId = 'RootManageSharedAccessKey'
+for($resourceGroup in $resourceGroups){
+	$resourceGroupDetails = Get-AzResourceGroup -Name $resourceGroup
+	if($location -ne $resourceGroupDetails.Location.replace(' ','').toLower()){
+		Write-Host "The ource resource groups are not in the same region...."
+		$locationValidity=$False
+		break
+	}
+}
+Get-AzResourceGroup -Name $targetResourceGroup -ErrorVariable notPresent -ErrorAction SilentlyContinue
 
+if ($notPresent)
+{
+    Write-Host "The target resource group is not present in the specified location or the lm_company_name is incorrect"
+}
+else
+{
+if($locationValidity){
 If($ADO){write-host "ADO switch deprecated and no longer necessary" -ForegroundColor Yellow}
 Write-Host "Authenticating to Azure..." -ForegroundColor Cyan
 try
@@ -113,3 +129,6 @@ foreach ($resourceGroup in $resourceGroups){
 	./Trigger-PolicyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignments.PolicyAssignmentId -ResourceGroupName $policyAssignments.ResourceGroupName
 
 }
+}else{
+		Write-Host "Exiting the script...."
+	}
