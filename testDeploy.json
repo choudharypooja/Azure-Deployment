@@ -22,7 +22,6 @@
   "lmAppStorageAccounts": "[if(greater(length(variables('storage')) , 24), substring(variables('storage'), sub(length(variables('storage')) , 24), 24) , variables('storage'))]",
   "eventhubLogsName": "log-hub",
   "ConsumergroupsLogsName": "LMConsumerGroup",
-  "AuthorizationRulesSharedAccessKey": "LMSharedAccessKey",
   "functionServerfarms": "[concat(variables('eventhubNamespace'),'-service-plan')]",
   "listener": "listener",
   "sender": "sender"
@@ -158,23 +157,6 @@
     "[resourceId('Microsoft.Web/serverfarms', variables('functionServerfarms'))]",
     "[resourceId('Microsoft.Storage/storageAccounts', variables('lmAppStorageAccounts'))]",
     "[concat('Microsoft.EventHub/namespaces/', variables('eventhubNamespace'))]"
-   ]
-  },
-  {
-   "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
-   "name": "[concat(variables('eventhubNamespace'), '/', variables('AuthorizationRulesSharedAccessKey'))]",
-   "apiVersion": "2017-04-01",
-   "location": "[resourceGroup().location]",
-   "scale": null,
-   "properties": {
-    "rights": [
-     "Listen",
-     "Manage",
-     "Send"
-    ]
-   },
-   "dependsOn": [
-    "[resourceId('Microsoft.EventHub/namespaces', variables('eventhubNamespace'))]"
    ]
   },
   {

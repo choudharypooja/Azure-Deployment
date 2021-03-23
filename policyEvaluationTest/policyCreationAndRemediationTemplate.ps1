@@ -14,8 +14,8 @@ param
 
 )
 
-New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/ARMTemplateExportTest.json" -Location $location -Verbose
-
+$location = $location.replace(' ','').toLower()
+$locationValidity=$True
 $targetResourceGroup = 'lm-logs-' + $lmCompanyName + '-' + $location + '-group'
 $eventhubNameSpace = $targetResourceGroup.replace('-group','')
 $eventhubName = 'log-hub'
@@ -101,6 +101,7 @@ If($AzureLogin -and !($SubscriptionID))
 Write-Host "Selecting Azure Subscription: $($SubscriptionID.Guid) ..." -ForegroundColor Cyan
 $Null = Select-AzSubscription -SubscriptionId $SubscriptionID.Guid
 
+New-AzDeployment -Name "Initiative-LM-$location" -TemplateUri "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/ARMTemplateExportTest.json" -Location $location -Verbose
 
 foreach ($resourceGroup in $resourceGroups){
 	$policyAssignments = ./policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup -subscriptionId $subscriptionId
