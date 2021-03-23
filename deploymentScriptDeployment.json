@@ -25,7 +25,8 @@
   },
   "variables": {
     "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
-    "deploymentResourceGroupName": "[concat('lm-for-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]"
+    "deploymentResourceGroupName": "[concat('lm-for-diagnostic-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]",
+    "location": "[replace(parameters('locationOfResourceGroupsToSendLogs'),' ','')]"
   },
   "resources": [
     {
@@ -49,7 +50,7 @@
         },
         "parameters": {
           "location": {
-            "value": "[parameters('locationOfResourceGroupsToSendLogs')]"
+            "value": "[variables('location')]"
           },
           "resourceGroups": {
             "value": "[parameters('resourceGroups')]"

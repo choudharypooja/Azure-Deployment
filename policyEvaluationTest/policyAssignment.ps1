@@ -16,10 +16,7 @@ param
 	[string]$eventhubAuthorizationId,
 
 	[Parameter(Mandatory =$True)]
-	[string]$targetResourceGroup,
-
-	[Parameter(Mandatory =$True)]
-	[string]$subscriptionId
+	[string]$targetResourceGroup
 )
 
 $definition = Get-AzPolicySetDefinition | Where-Object { $_.Properties.DisplayName -eq 'Azure Diagnostics Policy Initiative to LM' }
