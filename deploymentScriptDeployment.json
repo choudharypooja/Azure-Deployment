@@ -17,7 +17,11 @@
     "managedIdentity":{
       "type":"string",
       "metadata":"Please provide the id of a User Defined Managed Identity with User Access Administrator role"
-    }
+    },
+    "utcNow": {
+            "defaultValue": "[utcNow()]",
+            "type": "String"
+        }
   },
   "variables": {
     "templateBaseUri" : "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
@@ -58,7 +62,10 @@
     },
     "managedIdentity":{
       "value":"[parameters('managedIdentity')]"
-    }
+    },
+    "utcNow": {
+       "value": "[parameters('utcNow')]"
+      }
   }
   },
     "dependsOn": [
