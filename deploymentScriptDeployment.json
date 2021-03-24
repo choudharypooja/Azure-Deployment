@@ -23,8 +23,7 @@
   },
   "variables": {
     "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
-    "deploymentResourceGroupName": "[concat('lm-deployscript-',parameters('LM_Company_name'),'-',replace(parameters('locationOfResourceGroupsToSendLogs'),' ',''))]",
-    "location": "[replace(parameters('locationOfResourceGroupsToSendLogs'),' ','')]"
+    "deploymentResourceGroupName": "[concat('lm-deployscript-',parameters('LM_Company_name'))]"
   },
   "resources": [
     {
