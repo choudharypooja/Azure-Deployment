@@ -3,24 +3,22 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "subscriptionId": {
-      "type": "string"
-    },
-    "locationOfResourceGroupsToSendLogs": {
-      "type": "string"
+      "type": "String"
     },
     "resourceGroups": {
-      "type": "string"
+      "type": "String"
     },
     "LM_Company_name": {
-      "type": "string"
+      "type": "String"
     },
     "managedIdentity": {
-      "type": "string",
+      "type": "String",
       "metadata": "Please provide the id of a User Defined Managed Identity with User Access Administrator role"
     },
-    "utcNow": {
+    "forceUpdateTag": {
       "defaultValue": "[utcNow()]",
-      "type": "string"
+      "type": "string",
+      "metadata": "Please do not edit this setting"
     }
   },
   "variables": {
@@ -32,16 +30,17 @@
     {
       "type": "Microsoft.Resources/resourceGroups",
       "apiVersion": "2018-05-01",
-      "location": "East US",
       "name": "[variables('deploymentResourceGroupName')]",
+      "location": "West US",
       "properties": {}
     },
     {
+      "type": "Microsoft.Resources/deployments",
       "apiVersion": "2017-05-10",
       "name": "linkedTemplatedeployment",
-      "type": "Microsoft.Resources/deployments",
-      "resourceGroup": "[variables('deploymentResourceGroupName')]",
-      "comments": "Deploy policies within the group",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]"
+      ],
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -49,9 +48,6 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "location": {
-            "value": "[variables('location')]"
-          },
           "resourceGroups": {
             "value": "[parameters('resourceGroups')]"
           },
@@ -65,13 +61,11 @@
             "value": "[parameters('managedIdentity')]"
           },
           "utcNow": {
-            "value": "[parameters('utcNow')]"
+            "value": "[parameters('forceUpdateTag')]"
           }
         }
       },
-      "dependsOn": [
-        "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]"
-      ]
+      "resourceGroup": "[variables('deploymentResourceGroupName')]"
     }
   ]
 }
