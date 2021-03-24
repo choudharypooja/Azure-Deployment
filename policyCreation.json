@@ -43,7 +43,7 @@
           "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/policyAssignment.ps1",
           "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/Trigger-PolicyInitiativeRemediation.ps1"
         ],
-        "cleanupPreference": "OnSuccess",
+        "cleanupPreference": "Always",
         "retentionInterval": "P1D"
       }
     }
