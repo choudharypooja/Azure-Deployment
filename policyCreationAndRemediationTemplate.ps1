@@ -3,9 +3,6 @@ param
     [Parameter(Mandatory = $True)]
     [string[]]$resourceGroups,
 
-    [Parameter(Mandatory = $True)]
-    [string]$location,
-
     [Parameter(Mandatory =$True)]
     [string]$lmCompanyName,
 
@@ -14,7 +11,15 @@ param
 
 )
 
-$location = $location.replace(' ','').toLower()
+$location = (Get-AzResourceGroup -Name  $resourceGroups[0]).Location
+foreach($resourceGroup in $resourceGroups){
+    $eachLocation = (Get-AzResourceGroup -Name  $resourceGroup).Location
+    if($location -ne $eachLocation){
+        Write-Host "The source resourceGroup location is not same..."
+        exit
+    }
+}
+
 $targetResourceGroup = 'lm-logs-' + $lmCompanyName + '-' + $location + '-group'
 $eventhubNameSpace = $targetResourceGroup.replace('-group','')
 $eventhubName = 'log-hub'
