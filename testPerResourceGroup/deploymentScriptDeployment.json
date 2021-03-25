@@ -20,7 +20,7 @@
   },
   "variables": {
     "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/testPerResourceGroup/",
-    "deploymentResourceGroupName": "[concat('lm-deployscript-',parameters('LM_Company_name'),'-',resourceGroup().Location)]"
+    "deploymentResourceGroupName": "[concat('lm-logs-',parameters('LM_Company_name'),'-',resourceGroup().Location,'-group')]"
   },
   "resources": [
     {
