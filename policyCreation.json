@@ -24,7 +24,7 @@
       "type": "Microsoft.Resources/deploymentScripts",
       "apiVersion": "2020-10-01",
       "name": "scriptInTemplate",
-      "location": "[resourceGroup().location]",
+      "location": "West US",
       "kind": "AzurePowerShell",
       "identity": {
         "type": "userAssigned",
