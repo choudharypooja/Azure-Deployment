@@ -19,8 +19,8 @@
     }
   },
   "variables": {
-    "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
-    "deploymentResourceGroupName": "[concat('lm-deployscript-',parameters('LM_Company_name'))]"
+    "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/testPerResourceGroup/",
+    "deploymentResourceGroupName": "[concat('lm-deployscript-',parameters('LM_Company_name'),'-',resourceGroup().Location)]"
   },
   "resources": [
     {
