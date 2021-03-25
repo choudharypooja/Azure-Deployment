@@ -1,7 +1,7 @@
 param
 (
     [Parameter(Mandatory = $True)]
-    [string$resourceGroups,
+    [string]$resourceGroups,
 
     [Parameter(Mandatory =$True)]
     [string]$lmCompanyName,
@@ -10,7 +10,7 @@ param
     [string]$subscriptionId,
 
     [Parameter(Mandatory = $True)]
-    [string$location
+    [string]$location
 
 )
 
