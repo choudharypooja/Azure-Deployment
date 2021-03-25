@@ -1,0 +1,126 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Resource_Group_Region": {
+      "type": "string"
+    },
+    "LM_Company_name": {
+      "type": "string"
+    },
+    "LM_Access_Id": {
+      "type": "string"
+    },
+    "LM_Access_Key": {
+      "type": "string"
+    },
+    "enableActivityLogs": {
+      "type": "string",
+      "allowedValues": [
+        "Yes",
+        "No"
+      ],
+      "metadata": {
+        "description": "Enable Activity logs to be sent to the event hub that will get created in this deployment itself"
+      },
+      "defaultValue": "Yes"
+    }
+  },
+  "variables": {
+    "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
+    "deploymentResourceGroupName": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('Resource_Group_Region'),' ',''),'-group')]",
+    "eventhubNamespace": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('Resource_Group_Region'),' ',''))]",
+    "eventhubLogsName": "log-hub",
+    "subscriptionId": "[subscription().subscriptionId]",
+    "eventHubAuthorizationRuleId": "[concat('/subscriptions/', variables('subscriptionId'), '/resourceGroups/', variables('deploymentResourceGroupName'), '/providers/Microsoft.EventHub/namespaces/', variables('eventhubNamespace'), '/authorizationRules/RootManageSharedAccessKey')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2018-05-01",
+      "location": "[parameters('Resource_Group_Region')]",
+      "name": "[variables('deploymentResourceGroupName')]",
+      "properties": {}
+    },
+    {
+      "apiVersion": "2017-05-10",
+      "name": "linkedTemplatedeployment",
+      "type": "Microsoft.Resources/deployments",
+      "resourceGroup": "[variables('deploymentResourceGroupName')]",
+      "comments": "Deploy resources within the group",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(variables('templateBaseUri'), 'testDeploy.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "azure_region": {
+            "value": "[parameters('Resource_Group_Region')]"
+          },
+          "LM_Company_name": {
+            "value": "[parameters('LM_Company_name')]"
+          },
+          "LM_Access_Id": {
+            "value": "[parameters('LM_Access_Id')]"
+          },
+          "LM_Access_Key": {
+            "value": "[parameters('LM_Access_Key')]"
+          }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]"
+      ]
+    },
+    {
+      "condition": "[equals(parameters('enableActivityLogs'), 'Yes')]",
+      "type": "Microsoft.Insights/diagnosticSettings",
+      "apiVersion": "2017-05-01-preview",
+      "name": "[variables('deploymentResourceGroupName')]",
+      "properties": {
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
+        "eventHubName": "[variables('eventhubLogsName')]",
+        "logs": [
+          {
+            "category": "Administrative",
+            "enabled": true
+          },
+          {
+            "category": "Security",
+            "enabled": true
+          },
+          {
+            "category": "ServiceHealth",
+            "enabled": true
+          },
+          {
+            "category": "Alert",
+            "enabled": true
+          },
+          {
+            "category": "Recommendation",
+            "enabled": true
+          },
+          {
+            "category": "Policy",
+            "enabled": true
+          },
+          {
+            "category": "Autoscale",
+            "enabled": true
+          },
+          {
+            "category": "ResourceHealth",
+            "enabled": true
+          }
+        ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]",
+        "linkedTemplatedeployment"
+      ]
+    }
+  ],
+  "outputs": {}
+}

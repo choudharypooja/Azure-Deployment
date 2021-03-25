@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionId": {
+      "type": "String"
+    },
+    "LM_Company_name": {
+      "type": "String"
+    },
+    "managedIdentity": {
+      "type": "String",
+      "metadata": "Please provide the id of a User Defined Managed Identity with User Access Administrator role"
+    },
+    "forceUpdateTag": {
+      "defaultValue": "[utcNow()]",
+      "type": "string",
+      "metadata": "Please do not edit this setting"
+    }
+  },
+  "variables": {
+    "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
+    "deploymentResourceGroupName": "[concat('lm-deployscript-',parameters('LM_Company_name'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2017-05-10",
+      "name": "linkedTemplatedeployment",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(variables('templateBaseUri'), 'policyCreation.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "resourceGroup": {
+            "value": "[resourceGroup().name]"
+          },
+          "LM_Company_name": {
+            "value": "[parameters('LM_Company_name')]"
+          },
+          "subscriptionId": {
+            "value": "[parameters('subscriptionId')]"
+          },
+          "managedIdentity": {
+            "value": "[parameters('managedIdentity')]"
+          },
+          "utcNow": {
+            "value": "[parameters('forceUpdateTag')]"
+          },
+          "location": {
+            "value": "[resourceGroup().Location]"
+          }
+        }
+      },
+      "resourceGroup": "[variables('deploymentResourceGroupName')]"
+    }
+  ]
+}
