@@ -1,0 +1,141 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "LM_Company_name": {
+      "type": "String"
+    },
+    "azure_region": {
+      "type": "String"
+    }
+  },
+  "variables": {
+    "logsFunctionAppName": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('azure_region'),' ',''))]",
+    "storage": "[toLower(replace(replace(concat(parameters('LM_Company_name'), replace(parameters('azure_region'),' ','')), '2', 'two'), '/[^A-Za-z]+/', ''))]",
+    "lmAppStorageAccounts": "[if(greater(length(variables('storage')) , 24), substring(variables('storage'), sub(length(variables('storage')) , 24), 24) , variables('storage'))]",
+    "hostingPlanName": "planfortimertiggered",
+    "Contributor": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
+    "contributorRoleAssignmentId": "[guid(subscription().subscriptionId, variables('Contributor'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-06-01",
+      "name": "[variables('lmAppStorageAccounts')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [],
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "encryption": {
+          "services": {
+            "file": {
+              "enabled": true
+            },
+            "blob": {
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2016-09-01",
+      "name": "[variables('hostingPlanName')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Y1",
+        "tier": "Dynamic",
+        "size": "Y1",
+        "family": "Y",
+        "capacity": 0
+      },
+      "kind": "functionapp",
+      "properties": {
+        "name": "[variables('hostingPlanName')]",
+        "reserved": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-06-01",
+      "name": "[variables('logsFunctionAppName')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('lmAppStorageAccounts'))]",
+        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+      ],
+      "kind": "functionapp",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "enabled": true,
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "httpsOnly": false,
+        "reserved": false,
+        "siteConfig": {
+          "use32BitWorkerProcess": true,
+          "powerShellVersion": "7.0",
+          "cors": {
+            "allowedOrigins": [
+              "*"
+            ]
+          },
+          "appSettings": [
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~3"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "powershell"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_PROCESS_COUNT",
+              "value": "1"
+            },
+            {
+              "name": "FUNCTION_APP_EDIT_MODE",
+              "value": "readwrite"
+            },
+            {
+              "name": "WEBSITE_RUN_FROM_PACKAGE",
+              "value": "https://github.com/choudharypooja/Azure-Deployment/raw/main/testTimerTriggered.zip"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('lmAppStorageAccounts'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('lmAppStorageAccounts')),'2019-06-01').keys[0].value)]"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('lmAppStorageAccounts'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('lmAppStorageAccounts')),'2019-06-01').keys[0].value)]"
+            },
+            {
+              "name": "AzureWebJobsDashboard",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('lmAppStorageAccounts'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('lmAppStorageAccounts')),'2019-06-01').keys[0].value)]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "apiVersion": "2017-09-01",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "name": "[variables('contributorRoleAssignmentId')]",
+      "properties": {
+        "roleDefinitionId": "[variables('Contributor')]",
+        "principalId": "[reference(resourceId('Microsoft.Web/sites', variables('logsFunctionAppName')), '2018-02-01', 'Full').identity.principalId]",
+        "scope": "[resourceGroup().id]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('logsFunctionAppName'))]"
+      ]
+    }
+  ]
+}
