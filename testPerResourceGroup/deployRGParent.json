@@ -2,7 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "Resource_Group_Region": {
+    "resource_group_region": {
       "type": "string"
     },
     "LM_Company_name": {
@@ -28,8 +28,8 @@
   },
   "variables": {
     "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
-    "deploymentResourceGroupName": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('Resource_Group_Region'),' ',''),'-group')]",
-    "eventhubNamespace": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('Resource_Group_Region'),' ',''))]",
+    "deploymentResourceGroupName": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('resource_group_region'),' ',''),'-group')]",
+    "eventhubNamespace": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('resource_group_region'),' ',''))]",
     "eventhubLogsName": "log-hub",
     "subscriptionId": "[subscription().subscriptionId]",
     "eventHubAuthorizationRuleId": "[concat('/subscriptions/', variables('subscriptionId'), '/resourceGroups/', variables('deploymentResourceGroupName'), '/providers/Microsoft.EventHub/namespaces/', variables('eventhubNamespace'), '/authorizationRules/RootManageSharedAccessKey')]"
@@ -38,7 +38,7 @@
     {
       "type": "Microsoft.Resources/resourceGroups",
       "apiVersion": "2018-05-01",
-      "location": "[parameters('Resource_Group_Region')]",
+      "location": "[parameters('resource_group_region')]",
       "name": "[variables('deploymentResourceGroupName')]",
       "properties": {}
     },
@@ -56,7 +56,7 @@
         },
         "parameters": {
           "azure_region": {
-            "value": "[parameters('Resource_Group_Region')]"
+            "value": "[parameters('resource_group_region')]"
           },
           "LM_Company_name": {
             "value": "[parameters('LM_Company_name')]"
