@@ -8,11 +8,11 @@
       "apiVersion": "2019-09-01",
       "name": "82B283F1C22CE03E0ED3BF024A2CE947",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Network/networkInterfaces to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Network/networkInterfaces to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Network/networkInterfaces to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Network/networkInterfaces to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -204,11 +204,11 @@
       "apiVersion": "2019-09-01",
       "name": "A08C4E65AC3520BF59E8CEC50B5021ED",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Network/networkSecurityGroups to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Network/networkSecurityGroups to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Network/networkSecurityGroups to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Network/networkSecurityGroups to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -400,11 +400,11 @@
       "apiVersion": "2019-09-01",
       "name": "DD13AD31C7D6A8416312B40E06EBEA3B",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Network/publicIPAddresses to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Network/publicIPAddresses to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Network/publicIPAddresses to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Network/publicIPAddresses to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -610,11 +610,11 @@
       "apiVersion": "2019-09-01",
       "name": "9E299A3D6BE683D5871FCDAC9139A26B",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Network/virtualNetworks to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Network/virtualNetworks to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Network/virtualNetworks to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Network/virtualNetworks to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -812,11 +812,11 @@
       "apiVersion": "2019-09-01",
       "name": "99C792FE1BF4398643D4F8E0B05FB134",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.RecoveryServices/vaults to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.RecoveryServices/vaults to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.RecoveryServices/vaults to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.RecoveryServices/vaults to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -1056,11 +1056,11 @@
       "apiVersion": "2019-09-01",
       "name": "59895B4EE7386CEF5C3CD1CBF94C03BC",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Compute/virtualMachines to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Compute/virtualMachines to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Compute/virtualMachines to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Compute/virtualMachines to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -1252,11 +1252,11 @@
       "apiVersion": "2019-09-01",
       "name": "33357A14C3F088DF4D70155B6ABC27F3",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Storage/storageAccounts (Storage) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Storage/storageAccounts (Storage) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Storage/storageAccounts (Storage) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Storage/storageAccounts (Storage) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -1452,11 +1452,11 @@
       "apiVersion": "2019-09-01",
       "name": "DE8BF220042039E3F2D6C37711DFA076",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for microsoft.insights/components (web) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for microsoft.insights/components (web) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for microsoft.insights/components (web) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for microsoft.insights/components (web) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -1698,11 +1698,11 @@
       "apiVersion": "2019-09-01",
       "name": "05A72FA2831F9B660C2C9EAA421CC083",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Sql/servers (v12.0) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Sql/servers (v12.0) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Sql/servers (v12.0) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Sql/servers (v12.0) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -1898,11 +1898,11 @@
       "apiVersion": "2019-09-01",
       "name": "DCF778F39F2F9F201095B20EDF4A8095",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,system) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,system) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,system) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,system) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -2144,11 +2144,11 @@
       "apiVersion": "2019-09-01",
       "name": "CB76F6D874BFEA0FBC59F76E13AABC2E",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Storage/storageAccounts (StorageV2) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Storage/storageAccounts (StorageV2) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Storage/storageAccounts (StorageV2) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Storage/storageAccounts (StorageV2) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -2344,11 +2344,11 @@
       "apiVersion": "2019-09-01",
       "name": "855EF5B024C4E3C75E81D4850CBB181E",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Web/sites (app,linux) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Web/sites (app,linux) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Web/sites (app,linux) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Web/sites (app,linux) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -2578,11 +2578,11 @@
       "apiVersion": "2019-09-01",
       "name": "A7F84303540A7D5588A3C13AEE85C324",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.ApiManagement/service to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.ApiManagement/service to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.ApiManagement/service to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.ApiManagement/service to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -2780,11 +2780,11 @@
       "apiVersion": "2019-09-01",
       "name": "E0CC0DB1153DA5E2CCE75FC2900A0439",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Web/serverFarms (functionapp) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Web/serverFarms (functionapp) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Web/serverFarms (functionapp) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Web/serverFarms (functionapp) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -2980,11 +2980,11 @@
       "apiVersion": "2019-09-01",
       "name": "7BA6741429811894D30B7F69560AE62D",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Web/serverFarms (linux) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Web/serverFarms (linux) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Web/serverFarms (linux) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Web/serverFarms (linux) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -3180,11 +3180,11 @@
       "apiVersion": "2019-09-01",
       "name": "4A4326E787B2301C880908962F6BE4A2",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Web/serverFarms (app) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Web/serverFarms (app) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Web/serverFarms (app) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Web/serverFarms (app) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -3255,10 +3255,6 @@
               {
                 "field": "location",
                 "in": "[[parameters('azureRegions')]"
-              },
-              {
-                "field": "kind",
-                "equals": "app"
               }
             ]
           },
@@ -3380,11 +3376,11 @@
       "apiVersion": "2019-09-01",
       "name": "646F62950D2FC86CB224C9DE9C22B3E8",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.KeyVault/vaults to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.KeyVault/vaults to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.KeyVault/vaults to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.KeyVault/vaults to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -3582,11 +3578,11 @@
       "apiVersion": "2019-09-01",
       "name": "EAF8CE5F106CB4EC81537E76A11B3C31",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Automation/automationAccounts to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Automation/automationAccounts to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Automation/automationAccounts to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Automation/automationAccounts to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -3792,11 +3788,11 @@
       "apiVersion": "2019-09-01",
       "name": "5965D075FE067794EE545CBF4136CDA8",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.EventGrid/domains to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.EventGrid/domains to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.EventGrid/domains to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.EventGrid/domains to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -3998,11 +3994,11 @@
       "apiVersion": "2019-09-01",
       "name": "F89D4C3236F9777A19780ACDB5609E63",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Network/frontdoors to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Network/frontdoors to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Network/frontdoors to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Network/frontdoors to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -4204,11 +4200,11 @@
       "apiVersion": "2019-09-01",
       "name": "A3128A03900A369FFB43922CE083A611",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.DataLakeAnalytics/accounts to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.DataLakeAnalytics/accounts to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.DataLakeAnalytics/accounts to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.DataLakeAnalytics/accounts to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -4410,11 +4406,11 @@
       "apiVersion": "2019-09-01",
       "name": "EF143C90CB8B0B640E21F94087B83FE7",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.DataLakeStore/accounts to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.DataLakeStore/accounts to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.DataLakeStore/accounts to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.DataLakeStore/accounts to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -4616,11 +4612,11 @@
       "apiVersion": "2019-09-01",
       "name": "E080480106E18A3623B6726D45430AA0",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.OperationalInsights/workspaces to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.OperationalInsights/workspaces to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.OperationalInsights/workspaces to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.OperationalInsights/workspaces to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -4818,11 +4814,11 @@
       "apiVersion": "2019-09-01",
       "name": "2D10CC0C81FF15C71FABF5E5E6744F23",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Network/loadBalancers to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Network/loadBalancers to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Network/loadBalancers to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Network/loadBalancers to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -5024,11 +5020,11 @@
       "apiVersion": "2019-09-01",
       "name": "359DED89E3ABEED5E2C8D7EB9B5204E4",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Network/trafficmanagerprofiles to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Network/trafficmanagerprofiles to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Network/trafficmanagerprofiles to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Network/trafficmanagerprofiles to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -5226,11 +5222,11 @@
       "apiVersion": "2019-09-01",
       "name": "F3277E2FB064E33A0135173E8D3BEEBF",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Network/virtualNetworkGateways to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Network/virtualNetworkGateways to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Network/virtualNetworkGateways to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Network/virtualNetworkGateways to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -5444,11 +5440,11 @@
       "apiVersion": "2019-09-01",
       "name": "93DFDF408A9A1AB7F070C9C0DB4C9A22",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.ServiceBus/namespaces to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.ServiceBus/namespaces to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.ServiceBus/namespaces to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.ServiceBus/namespaces to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -5646,11 +5642,11 @@
       "apiVersion": "2019-09-01",
       "name": "7FFAF04894D0815AE0923A5ABC1EF27C",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,user,vcore,serverless) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,user,vcore,serverless) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,user,vcore,serverless) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,user,vcore,serverless) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -5892,11 +5888,11 @@
       "apiVersion": "2019-09-01",
       "name": "893A4561A0AB741FCBAE5B13C5FF66DD",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Web/sites (app) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Web/sites (app) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Web/sites (app) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Web/sites (app) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -5967,10 +5963,6 @@
               {
                 "field": "location",
                 "in": "[[parameters('azureRegions')]"
-              },
-              {
-                "field": "kind",
-                "equals": "app"
               }
             ]
           },
@@ -6126,11 +6118,11 @@
       "apiVersion": "2019-09-01",
       "name": "B10BBE9EE398B5E5B597C31A01D5EEC0",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.DBforMySQL/servers to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.DBforMySQL/servers to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.DBforMySQL/servers to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.DBforMySQL/servers to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -6332,11 +6324,11 @@
       "apiVersion": "2019-09-01",
       "name": "A510638DE8DA10CCE40FA86A9653337B",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for microsoft.insights/autoscalesettings to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for microsoft.insights/autoscalesettings to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for microsoft.insights/autoscalesettings to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for microsoft.insights/autoscalesettings to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -6538,11 +6530,11 @@
       "apiVersion": "2019-09-01",
       "name": "C8586D4AF28A1CEC8539D9FCE8F59B71",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.ContainerService/managedClusters to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.ContainerService/managedClusters to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.ContainerService/managedClusters to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.ContainerService/managedClusters to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -6764,11 +6756,11 @@
       "apiVersion": "2019-09-01",
       "name": "8CC85643DA23187569B18BADF5F25355",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.EventHub/namespaces to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.EventHub/namespaces to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.EventHub/namespaces to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.EventHub/namespaces to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -6990,11 +6982,11 @@
       "apiVersion": "2019-09-01",
       "name": "B0EB8FFBCA7D8ACB48DE43A3A1CCF869",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Web/sites (functionapp,linux) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Web/sites (functionapp,linux) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Web/sites (functionapp,linux) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Web/sites (functionapp,linux) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -7196,11 +7188,11 @@
       "apiVersion": "2019-09-01",
       "name": "BD222F4EDF08BB1E2DC94C3444B8DD70",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.ContainerRegistry/registries to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.ContainerRegistry/registries to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.ContainerRegistry/registries to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.ContainerRegistry/registries to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -7402,11 +7394,11 @@
       "apiVersion": "2019-09-01",
       "name": "28621B0FCB1C1ED27A2C19F3124B146D",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Compute/virtualMachineScaleSets to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Compute/virtualMachineScaleSets to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Compute/virtualMachineScaleSets to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Compute/virtualMachineScaleSets to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -7598,11 +7590,11 @@
       "apiVersion": "2019-09-01",
       "name": "EF0EA062ABF5A44EA8E656974074224B",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Web/sites (functionapp) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Web/sites (functionapp) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Web/sites (functionapp) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Web/sites (functionapp) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -7804,11 +7796,11 @@
       "apiVersion": "2019-09-01",
       "name": "2033C71E5C2F08B42EC2753CC375B4DF",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Search/searchServices to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Search/searchServices to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Search/searchServices to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Search/searchServices to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -8006,11 +7998,11 @@
       "apiVersion": "2019-09-01",
       "name": "1B2DBFB97AAC45EBC9C188DAAA0C7917",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Batch/batchAccounts to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Batch/batchAccounts to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Batch/batchAccounts to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Batch/batchAccounts to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -8208,11 +8200,11 @@
       "apiVersion": "2019-09-01",
       "name": "2B20F5754CE54A67C45B000601B79FF5",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,user) to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,user) to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,user) to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.Sql/servers/databases (v12.0,user) to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -8283,10 +8275,6 @@
               {
                 "field": "location",
                 "in": "[[parameters('azureRegions')]"
-              },
-              {
-                "field": "kind",
-                "equals": "v12.0,user"
               }
             ]
           },
@@ -8454,11 +8442,11 @@
       "apiVersion": "2019-09-01",
       "name": "DBFE912FCEDF63817A74AACEEC8470E9",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.ClassicStorage/storageAccounts to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.ClassicStorage/storageAccounts to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.ClassicStorage/storageAccounts to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.ClassicStorage/storageAccounts to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -8650,11 +8638,11 @@
       "apiVersion": "2019-09-01",
       "name": "584687C59B443BB2864F400DAC30FA3E",
       "properties": {
-        "displayName": "Apply Diagnostic Settings for Microsoft.ContainerInstance/containerGroups to a Regional Event Hub",
+        "displayName": "Apply Test Diagnostic Settings for Microsoft.ContainerInstance/containerGroups to a Regional Event Hub",
         "mode": "Indexed",
-        "description": "This policy automatically deploys diagnostic settings to Apply Diagnostic Settings for Microsoft.ContainerInstance/containerGroups to a Regional Event Hub.",
+        "description": "This policy automatically deploys diagnostic settings to Apply Test Diagnostic Settings for Microsoft.ContainerInstance/containerGroups to a Regional Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
@@ -8890,10 +8878,10 @@
         "[resourceId('Microsoft.Authorization/policyDefinitions/', '584687C59B443BB2864F400DAC30FA3E')]"
       ],
       "properties": {
-        "displayName": "Azure Diagnostics Policy Initiative to LM",
-        "description": "This initiative configures application Azure resources to forward diagnostic logs and metrics to an Azure Diagnostics Event Hub.",
+        "displayName": "Azure Diagnostics Policy Initiative Test to LM",
+        "description": "This test initiative configures application Azure resources to forward diagnostic logs and metrics to an Azure Diagnostics Event Hub.",
         "metadata": {
-          "category": "Monitoring"
+          "category": "TestPolicy"
         },
         "parameters": {
           "profileName": {
