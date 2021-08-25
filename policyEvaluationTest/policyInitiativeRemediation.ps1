@@ -320,31 +320,31 @@ if($PolicyAssignmentID)
     }
 }
 
-# # Initialize counts to track number of policies to remediate
-# $Count = 0
-# $Totalcount = $PolicyDefinitionRefIDs.Count
+# Initialize counts to track number of policies to remediate
+$Count = 0
+$Totalcount = $PolicyDefinitionRefIDs.Count
 
-# # Use -force switch to bypass prompt
-# if ($Force -OR $PSCmdlet.ShouldContinue("Create a set of remediation tasks for Policy Initiative `"$($PolicyAssignMent.Properties.displayName)`". Continue?","Remediate `"$($PolicyAssignMent.Properties.displayName)`" Initiative?") )
-# {
-#     Foreach($PolicyDefRefID in $PolicyDefinitionRefIDs)
-#     {
-#         try {
-#             $Count++
-#             write-host "Creating remediation for Policy $Count of $Totalcount - Remediation-$PolicyDefRefID"
-#             $null = Start-AzPolicyRemediation -ResourceGroupName $resourceGroupName  -PolicyAssignmentId $PolicyAssignmentID -PolicyDefinitionReferenceId $PolicyDefRefID -Name "Remediation-$PolicyDefRefID"
-#         }
-#         catch {
-#             Write-Host "Something went wrong creating the policy remediation" -ForegroundColor Red
-#             write-host "Setting Context back to initial subscription $CurrentSub" -ForegroundColor Blue
-#             $Null = Set-AzContext -Subscription $CurrentSub
-#             break
-#         }
-#     }
-# }
-# else {
-#     Write-Host "You have cancelled the remediation request for $($PolicyAssignMent.Properties.displayName)" -ForegroundColor Yellow
-# }
+# Use -force switch to bypass prompt
+if ($Force -OR $PSCmdlet.ShouldContinue("Create a set of remediation tasks for Policy Initiative `"$($PolicyAssignMent.Properties.displayName)`". Continue?","Remediate `"$($PolicyAssignMent.Properties.displayName)`" Initiative?") )
+{
+    Foreach($PolicyDefRefID in $PolicyDefinitionRefIDs)
+    {
+        try {
+            $Count++
+            write-host "Creating remediation for Policy $Count of $Totalcount - Remediation-$PolicyDefRefID"
+            $null = Start-AzPolicyRemediation -ResourceGroupName $resourceGroupName  -PolicyAssignmentId $PolicyAssignmentID -PolicyDefinitionReferenceId $PolicyDefRefID -Name "Remediation-$PolicyDefRefID"
+        }
+        catch {
+            Write-Host "Something went wrong creating the policy remediation" -ForegroundColor Red
+            write-host "Setting Context back to initial subscription $CurrentSub" -ForegroundColor Blue
+            $Null = Set-AzContext -Subscription $CurrentSub
+            break
+        }
+    }
+}
+else {
+    Write-Host "You have cancelled the remediation request for $($PolicyAssignMent.Properties.displayName)" -ForegroundColor Yellow
+}
 
 # # Stop "timer" to calculate total time running
 # $Stop = (Get-Date)
