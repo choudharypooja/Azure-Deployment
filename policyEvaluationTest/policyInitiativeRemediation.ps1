@@ -346,21 +346,21 @@ else {
     Write-Host "You have cancelled the remediation request for $($PolicyAssignMent.Properties.displayName)" -ForegroundColor Yellow
 }
 
-# # Stop "timer" to calculate total time running
-# $Stop = (Get-Date)
+# Stop "timer" to calculate total time running
+$Stop = (Get-Date)
 
-# # Let's set context back to original sub you were on before executing
-# write-host "Setting Context back to initial subscription $CurrentSub" -ForegroundColor Blue
-# try
-# {
-#     $Null = Set-AzContext -Subscription $CurrentSub
-# }
-# catch
-# {
-#     Write-Host "Failed to set context back to intial subscription $CurrentSub.  Please review!"
-# }
+# Let's set context back to original sub you were on before executing
+write-host "Setting Context back to initial subscription $CurrentSub" -ForegroundColor Blue
+try
+{
+    $Null = Set-AzContext -Subscription $CurrentSub
+}
+catch
+{
+    Write-Host "Failed to set context back to intial subscription $CurrentSub.  Please review!"
+}
 
-# # Finish up
-# Write-Host "Complete`n" -ForegroundColor Green
+# Finish up
+Write-Host "Complete`n" -ForegroundColor Green
 # Write-Host "Script execution time: " -nonewline
 # Write-Host "$($($Stop - $Start).minutes) minutes and $($($Stop - $Start).seconds) seconds.`n" -ForegroundColor Cyan
