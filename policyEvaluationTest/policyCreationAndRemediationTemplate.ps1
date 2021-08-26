@@ -70,9 +70,9 @@ else{
     New-AzDeployment -TemplateUri $templateUri -Location "West US" -Verbose
     $policyAssignments = ./policyAssignment.ps1 -resourceGroup $resourceGroup -location $location -eventhubName $eventhubName -eventhubNameSpace $eventhubNameSpace -eventhubAuthorizationId $eventhubAuthorizationId -targetResourceGroup $targetResourceGroup
     Write-Host "Running compliance result for $($policyAssignments.PolicyAssignmentId)" -ForegroundColor Cyan
-#     Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignments.ResourceGroupName
-#     Start-Sleep -s 30
-#     $Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor
-#     Start-Sleep -s 20
+    Start-AzPolicyComplianceScan -ResourceGroupName $policyAssignments.ResourceGroupName
+    Start-Sleep -s 30
+    $Null = New-AzRoleAssignment -ObjectId $policyAssignments.Identity.principalId  -RoleDefinitionName Contributor
+    Start-Sleep -s 20
     ./policyInitiativeRemediation.ps1 -force -SubscriptionId $subscriptionId -PolicyAssignmentId $policyAssignments.PolicyAssignmentId -ResourceGroupName $policyAssignments.ResourceGroupName
 }
