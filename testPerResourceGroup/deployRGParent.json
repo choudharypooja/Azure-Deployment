@@ -14,6 +14,16 @@
     "LM_Access_Key": {
       "type": "string"
     },
+    "deploymentLocation": {
+    "type": "string"
+      "allowedValues": [
+        "Australia East","Australia Southeast","Brazil South",
+      ],
+      "metadata": {
+        "description": "Enable Activity logs to be sent to the event hub that will get created in this deployment itself"
+      },
+      "defaultValue": "Yes"
+    },
     "enableActivityLogs": {
       "type": "string",
       "allowedValues": [
@@ -27,7 +37,7 @@
     }
   },
   "variables": {
-    "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/",
+    "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/testPerResourceGroup/",
     "deploymentResourceGroupName": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('resource_group_region'),' ',''),'-group')]",
     "eventhubNamespace": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('resource_group_region'),' ',''))]",
     "eventhubLogsName": "log-hub",
@@ -51,7 +61,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(variables('templateBaseUri'), 'testDeploy.json')]",
+          "uri": "[concat(variables('templateBaseUri'), 'deploymentChildScript.json')]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
