@@ -1,0 +1,139 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resource_group_region": {
+      "type": "string"
+    },
+    "LM_Company_name": {
+      "type": "string"
+    },
+    "LM_Access_Id": {
+      "type": "string"
+    },
+    "LM_Access_Key": {
+      "type": "string"
+    },
+    "deploymentLocation": {
+    "type": "string",
+      "allowedValues": [
+        "Australia East","Australia Southeast","Brazil South","Canada Central","Canada East","Central India","Central US","East Asia","East US","East US 2","France Central","Germany West Central","Japan East","Japan West","Korea Central","North Central US","North Europe","Norway East","South Central US","Southeast Asia","South India","Switzerland North","UK South","UK West","UAE North","West Central US","West Europe","West US","West US 2"
+      ],
+      "metadata": {
+        "description": "Enable Activity logs to be sent to the event hub that will get created in this deployment itself"
+      },
+      "defaultValue": "West US"
+    },
+    "enableActivityLogs": {
+      "type": "string",
+      "allowedValues": [
+        "Yes",
+        "No"
+      ],
+      "metadata": {
+        "description": "Enable Activity logs to be sent to the event hub that will get created in this deployment itself"
+      },
+      "defaultValue": "Yes"
+    }
+  },
+  "variables": {
+    "templateBaseUri": "https://raw.githubusercontent.com/choudharypooja/Azure-Deployment/main/testPerResourceGroup/",
+    "deploymentResourceGroupName": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('resource_group_region'),' ',''),'-group')]",
+    "eventhubNamespace": "[concat('lm-logs','-',parameters('LM_Company_name'), '-', replace(parameters('resource_group_region'),' ',''))]",
+    "eventhubLogsName": "log-hub",
+    "subscriptionId": "[subscription().subscriptionId]",
+    "eventHubAuthorizationRuleId": "[concat('/subscriptions/', variables('subscriptionId'), '/resourceGroups/', variables('deploymentResourceGroupName'), '/providers/Microsoft.EventHub/namespaces/', variables('eventhubNamespace'), '/authorizationRules/RootManageSharedAccessKey')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2018-05-01",
+      "location": "[parameters('resource_group_region')]",
+      "name": "[variables('deploymentResourceGroupName')]",
+      "properties": {}
+    },
+    {
+      "apiVersion": "2017-05-10",
+      "name": "linkedTemplatedeployment",
+      "type": "Microsoft.Resources/deployments",
+      "resourceGroup": "[variables('deploymentResourceGroupName')]",
+      "comments": "Deploy resources within the group",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(variables('templateBaseUri'), 'deploymentChildScript.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "azure_region": {
+            "value": "[parameters('resource_group_region')]"
+          },
+          "LM_Company_name": {
+            "value": "[parameters('LM_Company_name')]"
+          },
+          "LM_Access_Id": {
+            "value": "[parameters('LM_Access_Id')]"
+          },
+          "LM_Access_Key": {
+            "value": "[parameters('LM_Access_Key')]"
+          },
+		  "deploymentLocation": {
+			  "value": "[parameters('deploymentLocation')]"
+		  }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]"
+      ]
+    },
+    {
+      "condition": "[equals(parameters('enableActivityLogs'), 'Yes')]",
+      "type": "Microsoft.Insights/diagnosticSettings",
+      "apiVersion": "2017-05-01-preview",
+      "name": "[variables('deploymentResourceGroupName')]",
+      "properties": {
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
+        "eventHubName": "[variables('eventhubLogsName')]",
+        "logs": [
+          {
+            "category": "Administrative",
+            "enabled": true
+          },
+          {
+            "category": "Security",
+            "enabled": true
+          },
+          {
+            "category": "ServiceHealth",
+            "enabled": true
+          },
+          {
+            "category": "Alert",
+            "enabled": true
+          },
+          {
+            "category": "Recommendation",
+            "enabled": true
+          },
+          {
+            "category": "Policy",
+            "enabled": true
+          },
+          {
+            "category": "Autoscale",
+            "enabled": true
+          },
+          {
+            "category": "ResourceHealth",
+            "enabled": true
+          }
+        ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups/', variables('deploymentResourceGroupName'))]",
+        "linkedTemplatedeployment"
+      ]
+    }
+  ],
+  "outputs": {}
+}
